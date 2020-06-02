@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.6.0" build="23201" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="_a56b5fc1e9ea1b093517c9d9548ae673284286b8822b35a6e6d89020cbb98c32_flash_display_Sprite" mod="1591091904325" signatureChecksum="4021516691" >
+        <def id="_a56b5fc1e9ea1b093517c9d9548ae673284286b8822b35a6e6d89020cbb98c32_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/vsdevelop/air/extension/webview/ANEWinWebView" mod="1591091898180" signatureChecksum="176527882" >
+        <def id="com.vsdevelop.air.extension.webview:ANEWinWebView" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <digests>
+        <digest type="SHA-256" signed="false" value="5d58194376676ca230ea30171113ff1ed10ad3a42039f3d31378ee4e094a6321"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

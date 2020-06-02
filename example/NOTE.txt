@@ -1,0 +1,1 @@
+注： 默认情况下，所有 AIR Android 应用程序的包名称都带 air 前缀。若不想使用此默认行为，可将计算机环境变量 AIR_NOANDROIDFLAIR 设置为 true。

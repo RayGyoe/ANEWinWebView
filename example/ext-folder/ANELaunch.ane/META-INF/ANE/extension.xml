@@ -1,0 +1,24 @@
+<extension xmlns="http://ns.adobe.com/air/extension/21.0">
+	<id>com.vsdevelop.air.extension.launch</id>
+	<versionNumber>1.0</versionNumber>
+	<platforms>
+		<platform name="Android-ARM">
+			<applicationDeployment>
+				<nativeLibrary>launch.jar</nativeLibrary>
+				<initializer>com.vsdevelop.air.extension.launch.ANELaunch</initializer>
+				<finalizer>com.vsdevelop.air.extension.launch.ANELaunch</finalizer>
+			</applicationDeployment>
+		</platform>
+		<platform name="Android-x86">
+			<applicationDeployment>
+				<nativeLibrary>launch.jar</nativeLibrary>
+				<initializer>com.vsdevelop.air.extension.launch.ANELaunch</initializer>
+				<finalizer>com.vsdevelop.air.extension.launch.ANELaunch</finalizer>
+			</applicationDeployment>
+		</platform>
+
+		<platform name="default">
+			<applicationDeployment />
+		</platform>
+	</platforms>
+</extension>

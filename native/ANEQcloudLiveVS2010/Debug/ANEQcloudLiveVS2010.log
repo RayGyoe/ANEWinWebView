@@ -1,0 +1,15 @@
+﻿  ANEWinCore.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: “typedef ”: 没有声明变量时忽略“”的左侧
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: “typedef ”: 没有声明变量时忽略“”的左侧
+  MiniDump.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: “typedef ”: 没有声明变量时忽略“”的左侧
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: “typedef ”: 没有声明变量时忽略“”的左侧
+i:\works\edoctor\anewincore\native\aneqcloudlivevs2010\minidump.cpp(44): warning C4477: “printf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“TCHAR *”
+  i:\works\edoctor\anewincore\native\aneqcloudlivevs2010\minidump.cpp(44): note: 请考虑在格式字符串中使用“%ls”
+  i:\works\edoctor\anewincore\native\aneqcloudlivevs2010\minidump.cpp(44): note: 请考虑在格式字符串中使用“%lls”
+  i:\works\edoctor\anewincore\native\aneqcloudlivevs2010\minidump.cpp(44): note: 请考虑在格式字符串中使用“%Ls”
+  i:\works\edoctor\anewincore\native\aneqcloudlivevs2010\minidump.cpp(44): note: 请考虑在格式字符串中使用“%ws”
+  正在生成代码...
+ANEWinCore.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:ICF”规范)
+    正在创建库 I:\Works\eDoctor\ANEWinCore\native\Debug\ANEWinCore.lib 和对象 I:\Works\eDoctor\ANEWinCore\native\Debug\ANEWinCore.exp
+  ANEQcloudLiveVS2010.vcxproj -> I:\Works\eDoctor\ANEWinCore\native\Debug\ANEWinCore.dll
