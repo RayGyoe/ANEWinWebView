@@ -2,16 +2,17 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "FlashRuntimeExtensions.h"
+#include "ANEUtils.h"
 
-/*
+#include "wke.h"
+
 #include <windows.h>
+/*
 #include <string>
 #include <memory>
 #include <stdio.h>
 #include <assert.h>
 */
-
 
 extern "C"
 {

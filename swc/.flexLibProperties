@@ -2,6 +2,7 @@
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.vsdevelop.air.extension.webview.ANEWinWebView"/>
+    <classEntry path="com.vsdevelop.air.extension.webview.ANEWebView"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

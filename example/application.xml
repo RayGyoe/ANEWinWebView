@@ -302,6 +302,7 @@
 </manifest>]]></manifestAdditions>
   </android>
   <iPhone>
+  <requestedDisplayResolution>high</requestedDisplayResolution>
     <InfoAdditions><![CDATA[
 		<key>NSAppTransportSecurity</key>
 		<dict>
@@ -338,7 +339,6 @@
 			<string>2</string>
 		</array>
 	]]></InfoAdditions>
-    <requestedDisplayResolution>high</requestedDisplayResolution>
   </iPhone>
   <initialWindow>
     <title>example</title>
@@ -354,6 +354,7 @@
     <!-- landscape,portrait -->
     <aspectRatio>landscape</aspectRatio>
     <autoOrients>true</autoOrients>
+	  <requestedDisplayResolution>high</requestedDisplayResolution>
   </initialWindow>
   <icon>
 		<!--android icon-->

@@ -5,6 +5,7 @@
 #include <windows.h>
 using std::string;
 
+#include <map>
 #include <vector>
 #include <string>
 
