@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="com.vsdevelop.air.extension.webview"><apiName>com.vsdevelop.air.extension.webview</apiName><apiDetail/><apiClassifier id="com.vsdevelop.air.extension.webview:ANEWinWebView"><apiName>ANEWinWebView</apiName><shortdesc>
+	 https://weolar.github.io/miniblink/views/doc/api.html
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 https://weolar.github.io/miniblink/views/doc/api.html
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.vsdevelop.air.extension.webview:ANEWinWebView:ANEWinWebView"><apiName>ANEWinWebView</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef></apiConstructorDetail></apiConstructor><apiOperation id="com.vsdevelop.air.extension.webview:ANEWinWebView:getInstance"><apiName>getInstance</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiOperationClassifier>com.vsdevelop.air.extension.webview:ANEWinWebView</apiOperationClassifier></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWinWebView:protected:onStatus"><apiName>onStatus</apiName><shortdesc>
+		 事件 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:StatusEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 事件 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWinWebView:wkeCreateWebWindow"><apiName>wkeCreateWebWindow</apiName><shortdesc>
+		 创建一个带真实窗口的wkeWebView
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>ANEWebView
+		 
+		 </apiDesc><apiOperationClassifier>com.vsdevelop.air.extension.webview:ANEWebView</apiOperationClassifier></apiReturn><apiParam><apiItemName>stage</apiItemName><apiType value="flash.display:Stage"/><apiDesc>Stage
+		 </apiDesc></apiParam><apiParam><apiItemName>x</apiItemName><apiType value="int"/><apiData>0</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="int"/><apiData>0</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>width</apiItemName><apiType value="int"/><apiData>200</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="int"/><apiData>200</apiData><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 创建一个带真实窗口的wkeWebView
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWinWebView:wkeEnableHighDPISupport"><apiName>wkeEnableHighDPISupport</apiName><shortdesc>
+		 开启高分屏支持。注意，这个api内部是通过设置ZOOM，并且关闭系统默认放大来实现。所以再使用wkeGetZoomFactor会发现值可能不为1
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>stage</apiItemName><apiType value="flash.display:Stage"/></apiParam></apiOperationDef><apiDesc>
+		 开启高分屏支持。注意，这个api内部是通过设置ZOOM，并且关闭系统默认放大来实现。所以再使用wkeGetZoomFactor会发现值可能不为1
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWinWebView:wkeInitialize"><apiName>wkeInitialize</apiName><shortdesc>
+		 初始化整个mb。此句必须在所有mb api前最先调用。并且所有mb api必须和调用wkeInit的线程为同个线程
+		 wkeInitialize
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 初始化整个mb。此句必须在所有mb api前最先调用。并且所有mb api必须和调用wkeInit的线程为同个线程
+		 wkeInitialize
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWinWebView:wkeVersionString"><apiName>wkeVersionString</apiName><shortdesc>
+		 wkeVersionString
+		 获取版本字符串
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>String
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 wkeVersionString
+		 获取版本字符串
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWinWebView:wkeVersion"><apiName>wkeVersion</apiName><shortdesc>
+		 wkeVersion
+		 获取目前api版本号
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>String
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 wkeVersion
+		 获取目前api版本号
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.vsdevelop.air.extension.webview:ANEWinWebView:isSupported:get"><apiName>isSupported</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.vsdevelop.air.extension.webview:ANEWinWebView:scale:get"><apiName>scale</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.vsdevelop.air.extension.webview:ANEWebView"><apiName>ANEWebView</apiName><shortdesc/><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiConstructor id="com.vsdevelop.air.extension.webview:ANEWebView:ANEWebView"><apiName>ANEWebView</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>webviewId</apiItemName><apiType value="int"/><apiData>0</apiData></apiParam><apiParam><apiItemName>extCtx</apiItemName><apiType value="flash.external:ExtensionContext"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeCanGoBack"><apiName>wkeCanGoBack</apiName><shortdesc>
+		 页面是否可以后退 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>Boolean
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 页面是否可以后退 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeCanGoForward"><apiName>wkeCanGoForward</apiName><shortdesc>
+		 页面是否可以前进
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>Boolean
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 页面是否可以前进
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeDestroyWebWindow"><apiName>wkeDestroyWebWindow</apiName><shortdesc>
+		  销毁wkeWebView对应的所有数据结构，包括真实窗口等
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		  销毁wkeWebView对应的所有数据结构，包括真实窗口等
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeGC"><apiName>wkeGC</apiName><shortdesc>
+		 延迟让miniblink垃圾回收 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>delayMs</apiItemName><apiType value="Number"/><apiData>500</apiData><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 延迟让miniblink垃圾回收 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeGetTitle"><apiName>wkeGetTitle</apiName><shortdesc>
+		 获取网页标题
+		 wkeGetTitle 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>String
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 获取网页标题
+		 wkeGetTitle 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeGetURL"><apiName>wkeGetURL</apiName><shortdesc>
+		 获取webview主frame的url 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>String
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 获取webview主frame的url 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeGetUserAgent"><apiName>wkeGetUserAgent</apiName><shortdesc>
+		  获取webview的UA
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>String
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		  获取webview的UA
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeGetZoomFactor"><apiName>wkeGetZoomFactor</apiName><shortdesc>
+		 获取zoom缩放值 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>Number
+		 
+		 </apiDesc><apiType value="Number"/></apiReturn></apiOperationDef><apiDesc>
+		 获取zoom缩放值 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeGoBack"><apiName>wkeGoBack</apiName><shortdesc>
+		 强制让页面后退
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>Boolean
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 强制让页面后退
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeGoForward"><apiName>wkeGoForward</apiName><shortdesc>
+		 强制让页面前进
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>Boolean
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 强制让页面前进
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeLoadHTML"><apiName>wkeLoadHTML</apiName><shortdesc>
+		 加载一段html
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>str</apiItemName><apiType value="String"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 加载一段html
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeLoadURL"><apiName>wkeLoadURL</apiName><shortdesc>
+		 加载url。url必须是网络路径，如http://qq.com/
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>path</apiItemName><apiType value="String"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 加载url。url必须是网络路径，如http://qq.com/
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeMoveWindow"><apiName>wkeMoveWindow</apiName><shortdesc>
+		 调整webview大小位置
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>x</apiItemName><apiType value="int"/><apiData>0</apiData><apiDesc>	 
+		 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="int"/><apiData>0</apiData></apiParam><apiParam><apiItemName>width</apiItemName><apiType value="int"/><apiData>200</apiData></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="int"/><apiData>200</apiData></apiParam></apiOperationDef><apiDesc>
+		 调整webview大小位置
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeReload"><apiName>wkeReload</apiName><shortdesc>
+		 重新加载 
+		 wkeReload
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 重新加载 
+		 wkeReload
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeSetCookieEnabled"><apiName>wkeSetCookieEnabled</apiName><shortdesc>
+		  开启或关闭cookie
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="void"/></apiReturn><apiParam><apiItemName>enable</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Boolean
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		  开启或关闭cookie
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeSetCookieJarFullPath"><apiName>wkeSetCookieJarFullPath</apiName><shortdesc>
+		 设置cookie缓存文件绝对地址
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>path</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>	 defualt 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 设置cookie缓存文件绝对地址
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeSetDebugConfig"><apiName>wkeSetDebugConfig</apiName><shortdesc>
+		 DevTools
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>devToolsHtml</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>file:///c:/miniblink/front_end/inspector.html
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 DevTools
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeSetFocus"><apiName>wkeSetFocus</apiName><shortdesc>
+		 设置焦点
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 设置焦点
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeSetLocalStorageFullPath"><apiName>wkeSetLocalStorageFullPath</apiName><shortdesc>
+		 设置LocalStorage缓存文件绝对目录
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>path</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 设置LocalStorage缓存文件绝对目录
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeSetZoomFactor"><apiName>wkeSetZoomFactor</apiName><shortdesc>
+		 设置zoom缩放值 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>value</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>Number(1)
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 设置zoom缩放值 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeShowWindow"><apiName>wkeShowWindow</apiName><shortdesc>
+		 控制窗口是否显示
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="void"/></apiReturn><apiParam><apiItemName>value</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 控制窗口是否显示
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.vsdevelop.air.extension.webview:ANEWebView:wkeStopLoading"><apiName>wkeStopLoading</apiName><shortdesc>
+		 停止加载 
+		 wkeStopLoading
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 停止加载 
+		 wkeStopLoading
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.vsdevelop.air.extension.webview:ANEWebView:height:get"><apiName>height</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.vsdevelop.air.extension.webview:ANEWebView:visible:get"><apiName>visible</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.vsdevelop.air.extension.webview:ANEWebView:width:get"><apiName>width</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.vsdevelop.air.extension.webview:ANEWebView:x:get"><apiName>x</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.vsdevelop.air.extension.webview:ANEWebView:y:get"><apiName>y</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue></apiClassifier></apiPackage>

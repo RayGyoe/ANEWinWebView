@@ -1,0 +1,415 @@
+<asdoc>
+
+<classRec name='ANEWebView' fullname='com.vsdevelop.air.extension.webview:ANEWebView' sourcefile='I:\Works\eDoctor\ANEWinWebView\swc\src\com\vsdevelop\air\extension\webview\ANEWebView.as' namespace='com.vsdevelop.air.extension.webview' access='public' baseclass='flash.events:EventDispatcher' isFinal='false' isDynamic='false' >
+</classRec>
+<method name='ANEWebView' fullname='com.vsdevelop.air.extension.webview:ANEWebView/ANEWebView' isStatic='false' isFinal='false' isOverride='false'  param_names='webviewId;extCtx' param_types='int;flash.external:ExtensionContext' param_defaults='0;null' result_type='*'>
+</method>
+<method name='wkeCanGoBack' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeCanGoBack' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+
+		 页面是否可以后退 
+
+		 ]]></description>
+<return><![CDATA[Boolean
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeCanGoForward' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeCanGoForward' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+
+		 页面是否可以前进
+
+		 ]]></description>
+<return><![CDATA[Boolean
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeDestroyWebWindow' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeDestroyWebWindow' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+
+		  销毁wkeWebView对应的所有数据结构，包括真实窗口等
+
+		 ]]></description>
+</method>
+<method name='wkeGC' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeGC' isStatic='false' isFinal='false' isOverride='false'  param_names='delayMs' param_types='Number' param_defaults='500' result_type='void'>
+<description><![CDATA[
+
+		 延迟让miniblink垃圾回收 
+
+		 ]]></description>
+<param><![CDATA[delayMs
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeGetTitle' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeGetTitle' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+
+		 获取网页标题
+
+		 wkeGetTitle 
+
+		 ]]></description>
+<return><![CDATA[String
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeGetURL' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeGetURL' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+
+		 获取webview主frame的url 
+
+		 ]]></description>
+<param><![CDATA[str
+
+		 ]]></param>
+<return><![CDATA[String
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeGetUserAgent' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeGetUserAgent' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+
+		  获取webview的UA
+
+		 ]]></description>
+<param><![CDATA[str
+
+		 ]]></param>
+<return><![CDATA[String
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeGetZoomFactor' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeGetZoomFactor' isStatic='false' isFinal='false' isOverride='false'  result_type='Number'>
+<description><![CDATA[
+
+		 获取zoom缩放值 
+
+		 ]]></description>
+<return><![CDATA[Number
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeGoBack' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeGoBack' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+
+		 强制让页面后退
+
+		 ]]></description>
+<return><![CDATA[Boolean
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeGoForward' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeGoForward' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+
+		 强制让页面前进
+
+		 ]]></description>
+<return><![CDATA[Boolean
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeLoadHTML' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeLoadHTML' isStatic='false' isFinal='false' isOverride='false'  param_names='str' param_types='String' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+
+		 加载一段html
+
+		 ]]></description>
+<param><![CDATA[str
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeLoadURL' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeLoadURL' isStatic='false' isFinal='false' isOverride='false'  param_names='path' param_types='String' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+
+		 加载url。url必须是网络路径，如http://qq.com/
+
+		 ]]></description>
+<param><![CDATA[str
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeMoveWindow' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeMoveWindow' isStatic='false' isFinal='false' isOverride='false'  param_names='x;y;width;height' param_types='int;int;int;int' param_defaults='0;0;200;200' result_type='void'>
+<description><![CDATA[
+
+		 调整webview大小位置
+
+		 ]]></description>
+<param><![CDATA[rect
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeReload' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeReload' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+
+		 重新加载 
+
+		 wkeReload
+
+		 ]]></description>
+</method>
+<method name='wkeSetCookieEnabled' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeSetCookieEnabled' isStatic='false' isFinal='false' isOverride='false'  param_names='enable' param_types='Boolean' param_defaults='true' result_type='void'>
+<description><![CDATA[
+
+		  开启或关闭cookie
+
+		 ]]></description>
+<param><![CDATA[enable Boolean
+
+		 ]]></param>
+<return><![CDATA[
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeSetCookieJarFullPath' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeSetCookieJarFullPath' isStatic='false' isFinal='false' isOverride='false'  param_names='path' param_types='String' param_defaults='null' result_type='void'>
+<description><![CDATA[
+
+		 设置cookie缓存文件绝对地址
+
+		 ]]></description>
+<param><![CDATA[path
+
+		 defualt 
+
+		 ]]></param>
+</method>
+<method name='wkeSetDebugConfig' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeSetDebugConfig' isStatic='false' isFinal='false' isOverride='false'  param_names='devToolsHtml' param_types='String' param_defaults='null' result_type='void'>
+<description><![CDATA[
+
+		 DevTools
+
+		 ]]></description>
+<param><![CDATA[devToolsHtml	file:///c:/miniblink/front_end/inspector.html
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeSetFocus' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeSetFocus' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+
+		 设置焦点
+
+		 
+
+		 ]]></description>
+</method>
+<method name='wkeSetLocalStorageFullPath' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeSetLocalStorageFullPath' isStatic='false' isFinal='false' isOverride='false'  param_names='path' param_types='String' param_defaults='null' result_type='void'>
+<description><![CDATA[
+
+		 设置LocalStorage缓存文件绝对目录
+
+		 ]]></description>
+<param><![CDATA[path
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeSetZoomFactor' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeSetZoomFactor' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='Number' param_defaults='1' result_type='void'>
+<description><![CDATA[
+
+		 设置zoom缩放值 
+
+		 ]]></description>
+<param><![CDATA[value Number(1)
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeShowWindow' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeShowWindow' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='Boolean' param_defaults='true' result_type='void'>
+<description><![CDATA[
+
+		 控制窗口是否显示
+
+		 ]]></description>
+<param><![CDATA[value
+
+		 ]]></param>
+<return><![CDATA[
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeStopLoading' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeStopLoading' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+
+		 停止加载 
+
+		 wkeStopLoading
+
+		 ]]></description>
+</method>
+<method name='height' fullname='com.vsdevelop.air.extension.webview:ANEWebView/height/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+</method>
+<method name='visible' fullname='com.vsdevelop.air.extension.webview:ANEWebView/visible/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+</method>
+<method name='width' fullname='com.vsdevelop.air.extension.webview:ANEWebView/width/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+</method>
+<method name='x' fullname='com.vsdevelop.air.extension.webview:ANEWebView/x/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+</method>
+<method name='y' fullname='com.vsdevelop.air.extension.webview:ANEWebView/y/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+</method>
+<method name='height' fullname='com.vsdevelop.air.extension.webview:ANEWebView/height/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='int' param_defaults='undefined' result_type='void'>
+</method>
+<method name='visible' fullname='com.vsdevelop.air.extension.webview:ANEWebView/visible/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='Boolean' param_defaults='undefined' result_type='void'>
+</method>
+<method name='width' fullname='com.vsdevelop.air.extension.webview:ANEWebView/width/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='int' param_defaults='undefined' result_type='void'>
+</method>
+<method name='x' fullname='com.vsdevelop.air.extension.webview:ANEWebView/x/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='int' param_defaults='undefined' result_type='void'>
+</method>
+<method name='y' fullname='com.vsdevelop.air.extension.webview:ANEWebView/y/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='int' param_defaults='undefined' result_type='void'>
+</method>
+<field name='_extCtx' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_extCtx' type='flash.external:ExtensionContext' isStatic='false' isConst='false' >
+</field>
+<field name='_height' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_height' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_visible' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_visible' type='Boolean' isStatic='false' isConst='false' defaultValue='true' >
+</field>
+<field name='_width' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_width' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_x' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_x' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_y' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_y' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='webViewId' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:webViewId' type='int' isStatic='false' isConst='false' >
+</field>
+<classRec name='ANEWinWebView' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView' sourcefile='I:\Works\eDoctor\ANEWinWebView\swc\src\com\vsdevelop\air\extension\webview\ANEWinWebView.as' namespace='com.vsdevelop.air.extension.webview' access='public' baseclass='flash.events:EventDispatcher' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+
+	 https://weolar.github.io/miniblink/views/doc/api.html
+
+	 ]]></description>
+</classRec>
+<method name='ANEWinWebView' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/ANEWinWebView' isStatic='false' isFinal='false' isOverride='false'  result_type='*'>
+</method>
+<method name='getInstance' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/getInstance' isStatic='true' isFinal='false' isOverride='false'  result_type='com.vsdevelop.air.extension.webview:ANEWinWebView'>
+</method>
+<method name='onStatus' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/protected:onStatus' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:StatusEvent' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+
+		 事件 
+
+		 ]]></description>
+<param><![CDATA[event
+
+		 
+
+		 ]]></param>
+</method>
+<method name='wkeCreateWebWindow' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/wkeCreateWebWindow' isStatic='false' isFinal='false' isOverride='false'  param_names='stage;x;y;width;height' param_types='flash.display:Stage;int;int;int;int' param_defaults='undefined;0;0;200;200' result_type='com.vsdevelop.air.extension.webview:ANEWebView'>
+<description><![CDATA[
+
+		 创建一个带真实窗口的wkeWebView
+
+		 ]]></description>
+<param><![CDATA[stage Stage
+
+		 ]]></param>
+<param><![CDATA[x
+
+		 ]]></param>
+<param><![CDATA[y
+
+		 ]]></param>
+<param><![CDATA[width
+
+		 ]]></param>
+<param><![CDATA[height
+
+		 ]]></param>
+<return><![CDATA[ANEWebView
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeEnableHighDPISupport' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/wkeEnableHighDPISupport' isStatic='false' isFinal='false' isOverride='false'  param_names='stage' param_types='flash.display:Stage' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+
+		 开启高分屏支持。注意，这个api内部是通过设置ZOOM，并且关闭系统默认放大来实现。所以再使用wkeGetZoomFactor会发现值可能不为1
+
+		 ]]></description>
+</method>
+<method name='wkeInitialize' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/wkeInitialize' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+
+		 初始化整个mb。此句必须在所有mb api前最先调用。并且所有mb api必须和调用wkeInit的线程为同个线程
+
+		 wkeInitialize
+
+		 ]]></description>
+</method>
+<method name='wkeVersionString' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/wkeVersionString' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+
+		 wkeVersionString
+
+		 获取版本字符串
+
+		 ]]></description>
+<return><![CDATA[String
+
+		 
+
+		 ]]></return>
+</method>
+<method name='wkeVersion' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/wkeVersion' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+
+		 wkeVersion
+
+		 获取目前api版本号
+
+		 ]]></description>
+<return><![CDATA[String
+
+		 
+
+		 ]]></return>
+</method>
+<method name='isSupported' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/isSupported/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+</method>
+<method name='scale' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/scale/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Number'>
+</method>
+<field name='_extCtx' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/private:_extCtx' type='flash.external:ExtensionContext' isStatic='false' isConst='false' >
+</field>
+<field name='_instance' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/private:_instance' type='com.vsdevelop.air.extension.webview:ANEWinWebView' isStatic='true' isConst='false' >
+</field>
+<field name='_isSupported' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/private:_isSupported' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_scale' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/private:_scale' type='Number' isStatic='false' isConst='false' defaultValue='1' >
+</field>
+<field name='initWke' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/private:initWke' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='webViewObject' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/private:webViewObject' type='Object' isStatic='false' isConst='false' defaultValue='unknown' >
+</field>
+</asdoc>
