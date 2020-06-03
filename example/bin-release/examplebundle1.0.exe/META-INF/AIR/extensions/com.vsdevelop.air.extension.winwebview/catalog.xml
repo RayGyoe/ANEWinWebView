@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.6.0" build="23201" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="_cf2412018f7770a5ef16a61c6e73804408c965c7273fef19df1e2d3204be0c01_flash_display_Sprite" mod="1591120497448" signatureChecksum="2786425179" >
+        <def id="_cf2412018f7770a5ef16a61c6e73804408c965c7273fef19df1e2d3204be0c01_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/vsdevelop/air/extension/webview/ANEWebView" mod="1591120489289" signatureChecksum="2271522960" >
+        <def id="com.vsdevelop.air.extension.webview:ANEWebView" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWinWebView" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <script name="com/vsdevelop/air/extension/webview/ANEWinWebView" mod="1591120357804" signatureChecksum="668981456" >
+        <def id="com.vsdevelop.air.extension.webview:ANEWinWebView" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWebView" type="e" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWebView" type="s" /> 
+        <dep id="flash.display:Stage" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <digests>
+        <digest type="SHA-256" signed="false" value="9b2e3edc6380c5c64786bf7e00305b64e73b17aa9c78f76cbeeb2d64c332127f"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

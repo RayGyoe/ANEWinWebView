@@ -15,6 +15,7 @@ package
 	import flash.system.Capabilities;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
+	import flash.utils.setTimeout;
 	
 	/**
 	 * ...
@@ -70,14 +71,19 @@ package
 			{
 				var windowinit:NativeWindowInitOptions = new NativeWindowInitOptions();
 				var newWindow:NativeWindow = new NativeWindow(windowinit);
+				
+				var ws:int = stage.fullScreenWidth * 0.5;
+				var hs:int = stage.fullScreenHeight * 0.5;
+				newWindow.bounds = new Rectangle(ws*0.5, hs*0.5, ws, hs);
 				newWindow.activate();
 			
 				var windowTitle:String = "window-" + windowId;
 				
 				newWindow.title = windowTitle;
 				
-				var webview:ANEWebView = ANEWinWebView.getInstance().wkeCreateWebWindow(newWindow.stage);
+				var webview:ANEWebView = ANEWinWebView.getInstance().wkeCreateWebWindow(newWindow.stage,0,0,ws-20,hs-20);
 				webview.wkeLoadURL('https://www.talkmed.com');
+				
 			}
 			else{
 				webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage,0,100,stage.stageWidth,stage.stageHeight);

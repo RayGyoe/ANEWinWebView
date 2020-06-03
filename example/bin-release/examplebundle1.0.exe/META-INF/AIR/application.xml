@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/26.0">
+  <id>cn.edoctor.example</id>
+  <versionNumber>1.0</versionNumber>
+  <!--<supportedProfiles>tv extendedTV desktop mobileDevice extendedDesktop</supportedProfiles>-->
+  <supportedProfiles>extendedDesktop</supportedProfiles>
+  <programMenuFolder>eDoctor</programMenuFolder>
+  <filename>example</filename>
+  <name>
+		<text xml:lang="en">example</text>
+		<text xml:lang="zh_Hans">example</text>
+		<text xml:lang="zh_Hant">example</text>
+  </name>
+  <copyright>Copyright (C) 2016 By eDoctor Healthcare Communications. All Rights Reserved.‎</copyright>
+  <android>
+    <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
+		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
+		<uses-sdk android:minSdkVersion="17" android:targetSdkVersion="24" />
+		<!-- 访问网络 -->
+		<uses-permission android:name="android.permission.INTERNET" />
+		<!-- 允许写入外部存储卡 -->
+		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+		<!-- 允许通话时静音 -->
+		<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+		<!-- 禁止睡眠 -->
+		<uses-permission android:name="android.permission.WAKE_LOCK" />
+		<!-- 禁用键盘锁 -->
+		<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+		<!-- 拍照权限 -->
+		<uses-permission android:name="android.permission.CAMERA"/>
+		<!-- 闪光灯 -->
+		<uses-permission android:name="android.permission.FLASHLIGHT"/>
+		<!-- 录音 -->
+		<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+		<!-- 获取网络状态 -->
+		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+		<!-- 获取WiFi状态 -->
+		<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+		<!-- 状态栏控制 -->
+		<uses-permission android:name="android.permission.STATUS_BAR" />
+		<!-- 使用蓝牙 -->
+		<!-- <uses-permission android:name="android.permission.BLUETOOTH"/> -->
+		<!-- 蓝牙管理 -->
+		<!-- <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/> -->
+		<!-- 使用振动 -->
+		<uses-permission android:name="android.permission.VIBRATE" />
+		<!-- 使用SIP视频 -->
+		<!-- <uses-permission android:name="android.permission.USE_SIP" /> -->
+		<!-- 访问GPS -->
+		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+		
+		<!-- VOIP回聲抑制 -->
+
+		<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+		
+		<!--推送辅助权限-->
+		<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+		<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+		<!--Android 6.0版本可去除，用于选举信息（通道复用）的同步-->
+		<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+		<!--选举使用，当应用有删除或者更新时需要重新选举，复用推送通道-->
+		<uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+		<uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+		<uses-permission android:name="android.permission.RESTART_PACKAGES" />
+		<!--补偿通道小米PUSH使用，不用可去除-->
+		<uses-permission android:name="android.permission.GET_TASKS" />
+		<!--补偿通道GCM使用，不使用可去除-->
+		<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+		<!--允许监听启动完成事件-->
+		<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+		
+		<application  android:name="com.vsdevelop.air.extension.alicloud.ANEAliCloudSDKApplication" android:hardwareAccelerated="true" android:enabled="true">
+			<activity android:excludeFromRecents="false">
+				<intent-filter>
+					<action android:name="android.intent.action.MAIN" />
+					<category android:name="android.intent.category.LAUNCHER" />
+				</intent-filter>
+				
+				<intent-filter android:autoVerify="true">
+					<action android:name="android.intent.action.VIEW" />
+					<category android:name="android.intent.category.DEFAULT" />
+					<category android:name="android.intent.category.BROWSABLE" />
+					<data android:scheme="https" android:host="www.talkmed.com" />						
+					<data android:scheme="http" android:host="www.talkmed.com" />
+				</intent-filter>
+			</activity>
+				
+			<activity android:name="com.vsdevelop.air.extension.imageview.ImagePagerActivity" android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+			
+			
+			<!-- aliyun cloud -->
+			<!-- 
+			<meta-data android:name="com.alibaba.app.appkey" android:value="xxxx" />
+			<meta-data android:name="com.alibaba.app.appsecret" android:value="xxxxx" />
+			 -->
+			 <!-- mi push -->
+			<!--  <meta-data android:name="com.xiaomi.mipush.idkey" android:value="2882303761517512636|5331751272636" /> -->
+			
+			<!-- Push SDK 相关组件，required-->
+			<!-- 消息接收服务 -->
+			<!-- <service
+					android:name="com.alibaba.sdk.android.push.MsgService"
+					android:exported="false">
+					<intent-filter>
+						<action android:name="com.alibaba.sdk.android.push.NOTIFY_ACTION" />
+					</intent-filter>
+				</service>
+				<service android:name="com.alibaba.sdk.android.push.channel.CheckService"
+					android:process=":channel">
+					<intent-filter>
+						<action android:name="com.alibaba.sdk.android.push.CHECK_SERVICE" />
+					</intent-filter>
+				</service>
+				<service android:name="com.taobao.accs.ChannelService"
+					android:exported="true" android:process=":channel">
+					<intent-filter>
+						<action android:name="com.taobao.accs.intent.action.SERVICE"/>
+					</intent-filter>
+				</service>
+				<service
+					android:name="com.taobao.accs.ChannelService$KernelService"
+					android:exported="false"
+					android:process=":channel" >
+				</service>
+				<service android:name="com.taobao.accs.data.MsgDistributeService"
+					android:exported="true">
+					<intent-filter>
+						<action android:name="com.taobao.accs.intent.action.RECEIVE" />
+					</intent-filter>
+				</service>
+				<receiver android:name="com.taobao.accs.EventReceiver"
+					android:process=":channel">
+					<intent-filter>
+						<action android:name="android.intent.action.BOOT_COMPLETED"/>
+					</intent-filter>
+					<intent-filter>
+						<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+					</intent-filter>
+					<intent-filter>
+						<action android:name="android.intent.action.PACKAGE_REMOVED"/>
+						<data android:scheme="package"/>
+					</intent-filter>
+					<intent-filter>
+						<action android:name="android.intent.action.USER_PRESENT"/>
+					</intent-filter>
+				</receiver>
+				<receiver android:name="com.taobao.accs.ServiceReceiver"
+					android:process=":channel">
+					<intent-filter>
+						<action android:name="com.taobao.accs.intent.action.COMMAND"/>
+					</intent-filter>
+					<intent-filter>
+						<action android:name="com.taobao.accs.intent.action.START_FROM_AGOO"/>
+					</intent-filter>
+				</receiver>
+				<service android:name="org.android.agoo.accs.AgooService"
+					android:exported="true" >
+					<intent-filter>
+						<action android:name="com.taobao.accs.intent.action.RECEIVE" />
+					</intent-filter>
+				</service>
+				<service android:name="com.alibaba.sdk.android.push.AliyunPushIntentService"
+					android:exported="true"
+					>
+					<intent-filter>
+						<action android:name="org.agoo.android.intent.action.RECEIVE" />
+					</intent-filter>
+				</service>
+				<receiver
+					android:name="com.taobao.agoo.AgooCommondReceiver"
+					android:process=":channel"
+					android:exported="true" >
+					<intent-filter>
+						<action android:name="cn.edoctor.android.talkmed.intent.action.COMMAND" />
+					</intent-filter>
+					<intent-filter>
+						<action android:name="android.intent.action.PACKAGE_REMOVED" />
+						<data android:scheme="package" />
+					</intent-filter>
+				</receiver>
+				<service
+					android:name="com.alibaba.sdk.android.push.channel.TaobaoRecvService"
+					android:exported="true"
+					android:process=":channel">
+					<intent-filter>
+						<action android:name="org.android.agoo.client.MessageReceiverService" />
+					</intent-filter>
+				</service>				
+			 <receiver android:exported="true" android:name="com.vsdevelop.air.extension.alicloud.PushNotificationsMessageReceiver">
+				<intent-filter>
+					<action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="com.taobao.accs.intent.action.COMMAND" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="com.taobao.taobao.intent.action.COMMAND" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="com.alibaba.sdk.android.push.RECEIVE" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="android.intent.action.USER_PRESENT" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="android.intent.action.BOOT_COMPLETED" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="android.intent.action.PACKAGE_REMOVED" />
+					<data android:scheme="package" />
+				</intent-filter>
+			</receiver> -->			
+			
+			<!-- 小米通道官方配置 -->
+			<!-- <service android:name="com.xiaomi.push.service.XMPushService" android:enabled="true" android:process=":channel" />
+			<service android:name="com.xiaomi.mipush.sdk.PushMessageHandler" android:enabled="true" android:exported="true" />
+			<service android:enabled="true" android:name="com.xiaomi.mipush.sdk.MessageHandleService" />
+			<receiver android:name="com.alibaba.sdk.android.push.MiPushBroadcastReceiver" android:exported="true" >
+				<intent-filter>
+					<action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="com.xiaomi.mipush.ERROR" />
+				</intent-filter>
+			</receiver>
+			<receiver android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver" android:exported="true" >
+				<intent-filter>
+					<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+					<category android:name="android.intent.category.DEFAULT" />
+				</intent-filter>
+			</receiver>
+			<receiver android:name="com.xiaomi.push.service.receivers.PingReceiver" android:exported="false" android:process=":channel" >
+				<intent-filter>
+					<action android:name="com.xiaomi.push.PING_TIMER" />
+				</intent-filter>
+			</receiver> -->
+			
+			
+			<!-- ILive 消息收发service -->
+			<!-- <service
+				android:name="com.tencent.qalsdk.service.QalService"
+				android:exported="false"
+				android:process=":QALSERVICE" />
+			<service
+				android:name="com.tencent.qalsdk.service.QalAssistService"
+				android:exported="false"
+				android:process=":QALSERVICE" />
+			<receiver
+				android:name="com.tencent.qalsdk.QALBroadcastReceiver"
+				android:exported="false" >
+				<intent-filter>
+					<action android:name="com.tencent.qalsdk.broadcast.qal" />
+				</intent-filter>
+			</receiver>
+			<receiver
+				android:name="com.tencent.qalsdk.core.NetConnInfoCenter"
+				android:process=":QALSERVICE" >
+				<intent-filter>
+					<action android:name="android.intent.action.BOOT_COMPLETED" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="android.intent.action.TIME_SET" />
+				</intent-filter>
+				<intent-filter>
+					<action android:name="android.intent.action.TIMEZONE_CHANGED" />
+				</intent-filter>
+			</receiver> -->
+			<!-- ILive 消息收发service -->
+			
+			
+			<!-- Provider-->
+			<provider
+				android:name="android.support.v4.content.FileProvider"
+				android:authorities="项目唯一标识.providerdownloader"
+				android:exported="false"
+				android:grantUriPermissions="true">
+				<meta-data
+					android:name="android.support.FILE_PROVIDER_PATHS"
+					android:resource="@xml/provider_downloader_paths"/>
+			</provider>
+			
+			<!-- ANEDownloader -->
+			<!-- <service android:name="com.liulishuo.filedownloader.services.FileDownloadService$SharedMainProcessService" /> -->
+			<!-- <service android:name="com.liulishuo.filedownloader.services.FileDownloadService$SeparateProcessService" android:process=":filedownloader" /> -->
+			<!-- ANEDownloader -->
+			
+			
+		</application>
+</manifest>]]></manifestAdditions>
+  </android>
+  <iPhone>
+  <requestedDisplayResolution>high</requestedDisplayResolution>
+    <InfoAdditions><![CDATA[
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
+		<key>UIStatusBarStyle</key>
+		<string>UIStatusBarStyleBlackOpaque</string>
+		<key>UIRequiresPersistentWiFi</key>
+		<string>NO</string>
+		<key>UIPrerenderedIcon</key>
+		<false />
+		<key>MinimumOSVersion</key>
+		<string>8.0</string>
+		<key>UIApplicationExitsOnSuspend</key>
+		<false />
+		<!-- <multitasking>true</multitasking> -->
+		<!-- <launchScreen>LaunchScreen.storyboardc</launchScreen> -->
+		<!-- <assetsCar>Assets.car</assetsCar> -->
+		<!-- <key>UIBackgroundModes</key> -->
+		<!-- <array> -->
+			<!-- <string>audio</string> -->
+			<!-- <string>location</string> -->
+			<!-- <string>voip</string> -->
+			<!-- <string>fetch</string> -->
+			<!-- <string>bluetooth-central</string> -->
+			<!-- <string>bluetooth-peripheral</string> -->
+		<!-- </array> -->
+		<key>UIDeviceFamily</key>
+		<array>
+			<!-- iPhone support -->
+			<string>1</string>
+			<!-- iPad support -->
+			<string>2</string>
+		</array>
+	]]></InfoAdditions>
+  </iPhone>
+  <initialWindow>
+    <title>example</title>
+    <content>example.swf</content>
+    <visible>true</visible>
+    <fullScreen>false</fullScreen>
+    <!-- cpu,gpu,direct -->
+    <renderMode>direct</renderMode>
+    <depthAndStencil>true</depthAndStencil>
+    <!-- standard,none -->
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <!-- landscape,portrait -->
+    <aspectRatio>landscape</aspectRatio>
+    <autoOrients>true</autoOrients>
+	  <requestedDisplayResolution>high</requestedDisplayResolution>
+  </initialWindow>
+  <icon>
+		<!--android icon-->
+		<!--<image36x36>icons/36.png</image36x36>
+		<image48x48>icons/48.png</image48x48>
+		<image72x72>icons/72.png</image72x72>
+		<image96x96>icons/96.png</image96x96>
+		<image144x144>icons/144.png</image144x144>-->
+		
+		<!--iphone ios6-->
+		<!--<image29x29>icons/Icon-29.png</image29x29>-->
+		<!--<image58x58>icons/Icon-29@2x.png</image58x58>-->
+		<!--<image40x40>icons/Icon-40.png</image40x40>-->
+		<!--<image80x80>icons/Icon-40@2x.png</image80x80>-->
+		<!--<image50x50>icons/Icon-50.png</image50x50>-->
+		<!--<image100x100>icons/Icon-50@2x.png</image100x100>-->
+		<!--<image57x57>icons/Icon-57.png</image57x57>-->
+		<!--<image114x114>icons/Icon-57@2x.png</image114x114>-->
+		<!--<image72x72>icons/Icon-72.png</image72x72>-->
+		<!--<image144x144>icons/Icon-72@2x.png</image144x144>-->
+		<!--<image76x76>icons/Icon-76.png</image76x76>-->
+		<!--<image152x152>icons/Icon-76@2x.png</image152x152>-->
+		<!--<image120x120>icons/Icon-120.png</image120x120>-->
+		
+		
+		<!--<image512x512>iTunesArtwork</image512x512>-->
+		<!--<image1024x1024>iTunesArtwork@2x</image1024x1024>-->
+  </icon>
+  <extensions>
+		<!--<extensionID></extensionID>-->
+		
+		<extensionID>com.vsdevelop.air.extension.winwebview</extensionID>
+        <!--<extensionID>com.vsdevelop.air.extension.statusbar</extensionID>-->
+        <!--<extensionID>com.vsdevelop.air.extension.gyroscope</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.webview</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.imageview</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.wechat</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.toast</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.zip</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.qrcode</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.qcloud</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.popupwindow</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.downloader</extensionID>-->
+		<!--<extensionID>com.freshplanet.AirImagePicker</extensionID>-->
+		<!--<extensionID>com.vsdevelop.air.extension.launch</extensionID>-->
+        <!--<extensionID>com.mesmotronic.ane.fullscreen</extensionID>-->
+		
+  </extensions>
+  <!-- 
+	AIR options:
+	http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
+	
+	AIR mobile options:
+	http://help.adobe.com/en_US/air/build/WSfffb011ac560372f-5d0f4f25128cc9cd0cb-7ffe.html
+	
+	Android manifest documentation:
+	http://developer.android.com/guide/topics/manifest/manifest-intro.html
+	-->
+</application>
