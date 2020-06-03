@@ -36,6 +36,7 @@
     </source-path>
     <library-path append="true">
       <path-element>G:\Works\TalkMEDAndroid-Company\talkmed_ane_webview\example\lib\ANEWinWebView.ane</path-element>
+      <path-element>G:\Works\TalkMEDAndroid-Company\talkmed_ane_webview\example\lib\skin.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

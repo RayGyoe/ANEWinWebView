@@ -27,6 +27,9 @@
     <ClInclude Include="ANEUtils.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ANEwkeDocumentReadyCallback.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="FlashRuntimeExtensions.lib">
@@ -38,6 +41,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ANEUtils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ANEwkeDocumentReadyCallback.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

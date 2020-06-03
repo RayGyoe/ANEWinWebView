@@ -4,9 +4,12 @@
 
 #include "ANEUtils.h"
 
-#include "wke.h"
-
 #include <windows.h>
+#include <sstream>
+#include <shlwapi.h>
+
+
+#include "wke.h"
 /*
 #include <string>
 #include <memory>

@@ -58,9 +58,10 @@ public:
 
 	FREObject newBool(bool value);
 
-	static void dispatchEvent(FREContext ctx, std::string name, std::string value);
+	void ANEUtils::dispatchEvent(std::string name, std::string value);
+	void trace(std::string message);
 
-	void trace(std::string message) const;
+
 	void setFREContext(FREContext ctx);
 	FREContext ctxContext;
 

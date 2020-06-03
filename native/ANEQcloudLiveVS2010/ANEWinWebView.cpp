@@ -1,6 +1,7 @@
 #include "ANEWinWebView.h"
-#include <sstream>
-#include <shlwapi.h>
+
+
+using namespace std;
 
 std::string intToStdString(int value)
 {
@@ -22,6 +23,33 @@ extern "C" {
 
 	std::map<int, wkeWebView>VectorWkeWebView;
 	int webview_Index = 0;
+
+
+	std::map<int, int>VectorWkeWebViewIndex;
+	//events
+
+
+	// 回调：文档加载成功
+	void handleDocumentReady(wkeWebView webWindow, void * param, wkeWebFrameHandle frameId)
+	{
+		int indexId = *(int*)param;
+
+		printf("\n%s,%s   = webviewid=%d    =  %d", TAG, "handleDocumentReady", indexId, frameId);
+
+
+		if (wkeIsMainFrame(webWindow, frameId)) {
+			ANEutils.dispatchEvent("COMPLETE", ANEutils.intToStdString(indexId) + "||" + ANEutils.intToStdString((int)frameId));
+		}
+		else {
+			ANEutils.dispatchEvent("FRAME_COMPLETE", ANEutils.intToStdString(indexId) + "||" + ANEutils.intToStdString((int)frameId));
+		}
+	}
+
+
+
+	//events
+
+
 
 	//初始化
 	FREObject isSupported(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
@@ -101,19 +129,41 @@ extern "C" {
 		printf("\n%s,  window1 id=%d", TAG, window);
 		if (window != NULL)
 		{
+			int index = webview_Index += 1;
+
 			//WKE_WINDOW_TYPE_CONTROL
 			wkeWebView webview = wkeCreateWebWindow(WKE_WINDOW_TYPE_CONTROL, window, x, y, width, height);
 			wkeShowWindow(webview, true);
 
-			int index = webview_Index += 1;
-
 			VectorWkeWebView[webview_Index] = webview;
+			VectorWkeWebViewIndex[webview_Index] = index;
+			
+
+			//传递引用
+			//wkeOnDocumentReady(webview, handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
+
+			wkeOnDocumentReady2(webview,handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
 
 			return ANEutils.getFREObject(webview_Index);
 		}
 
 		return ANEutils.getFREObject(0);
 	}
+
+
+
+	FREObject ANEShowWindow(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+		auto value = ANEutils.getBool(argv[1]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeShowWindow(webview, value);
+		}
+		return ANEutils.getFREObject(true);
+	}
+	
 
 
 	FREObject LoadURL(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
@@ -153,6 +203,17 @@ extern "C" {
 		return NULL;
 	}
 
+	FREObject GetTitle(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			const char * value = wkeGetTitle(webview);
+			return ANEutils.getFREObject(value);
+		}
+		return NULL;
+	}
+
 	FREObject GetURL(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 	{
 		int index = ANEutils.getInt32(argv[0]);
@@ -180,7 +241,193 @@ extern "C" {
 		}
 		return NULL;
 	}
+
+
+
+	FREObject Reload(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeReload(webview);
+		}
+		return NULL;
+	}
+
+
+	FREObject StopLoading(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeStopLoading(webview);
+		}
+		return NULL;
+	}
+
 	
+
+	FREObject SetZoomFactor(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		float value  = (float)ANEutils.getDouble(argv[1]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeSetZoomFactor(webview, value);
+		}
+		return NULL;
+	}
+
+	FREObject GetZoomFactor(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			float value =  wkeGetZoomFactor(webview);
+			return ANEutils.getFREObject(value);
+		}
+		return ANEutils.getFREObject(0);
+	}
+
+
+
+	FREObject ANESetFocus(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeSetFocus(webview);
+		}
+		return NULL;
+	}
+	
+
+
+	FREObject CanGoBack(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			BOOL value = wkeCanGoBack(webview);
+
+			printf("\n%s,  wkeCanGoBack %d", TAG, value);
+
+			return ANEutils.getFREObject(value==1);
+		}
+		return ANEutils.getFREObject(false);
+	}
+
+	FREObject GoBack(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			BOOL value = wkeGoBack(webview);
+
+			printf("\n%s,  wkeGoBack %d", TAG, value);
+			return ANEutils.getFREObject(value == 1);
+		}
+		return ANEutils.getFREObject(false);
+	}
+	FREObject CanGoForward(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			BOOL value = wkeCanGoForward(webview);
+
+			printf("\n%s,  wkeCanGoForward %d", TAG, value);
+			return ANEutils.getFREObject(value == 1);
+		}
+		return ANEutils.getFREObject(false);
+	}
+
+	FREObject GoForward(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			BOOL value = wkeGoForward(webview);
+			printf("\n%s,  wkeGoForward %d", TAG, value);
+			return ANEutils.getFREObject(value == 1);
+		}
+		return ANEutils.getFREObject(false);
+	}
+	
+
+
+	FREObject SetCookieEnabled(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		auto enable = ANEutils.getBool(argv[1]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeSetCookieEnabled(webview, enable);
+		}
+		return NULL;
+	}
+	
+	
+
+	FREObject SetCookieJarFullPath(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		std::string path = ANEutils.getString(argv[1]);
+
+		std::wstring spath = ANEutils.s2ws(path);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeSetCookieJarFullPath(webview, spath.c_str());
+		}
+		return NULL;
+	}
+
+
+	FREObject SetLocalStorageFullPath(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		std::string path = ANEutils.getString(argv[1]);
+
+		std::wstring spath = ANEutils.s2ws(path);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeSetLocalStorageFullPath(webview, spath.c_str());
+		}
+		return NULL;
+	}
+	
+
+	FREObject GC(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		long intervalSec = (long)ANEutils.getDouble(argv[1]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeGC(webview,intervalSec);
+		}
+		return NULL;
+	}
+	
+
 	FREObject DestroyWebWindow(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 	{
 		int index = ANEutils.getInt32(argv[0]);
@@ -200,6 +447,8 @@ extern "C" {
 	// Flash Native Extensions stuff	
 	void ANEWinWebViewContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet) {
 
+		ANEutils.setFREContext(ctx);
+
 		static FRENamedFunction extensionFunctions[] =
 		{
 			{ (const uint8_t*) "isSupported",     NULL, &isSupported },
@@ -211,11 +460,37 @@ extern "C" {
 
 
 			{ (const uint8_t*) "wkeCreateWebWindow",     NULL, &CreateWebWindow },
+			
+			{ (const uint8_t*) "wkeShowWindow",     NULL, &ANEShowWindow },
+
 			{ (const uint8_t*) "wkeLoadURL",     NULL, &LoadURL },
 			{ (const uint8_t*) "wkeLoadHTML",     NULL, &LoadHTML },
 			{ (const uint8_t*) "wkeGetUserAgent",     NULL, &GetUserAgent },
+			{ (const uint8_t*) "wkeGetTitle",     NULL, &GetTitle },
+			
 			{ (const uint8_t*) "wkeGetURL",     NULL, &GetURL },
 			{ (const uint8_t*) "wkeMoveWindow",     NULL, &ANEMoveWindow },
+			{ (const uint8_t*) "wkeReload",     NULL, &Reload },
+			{ (const uint8_t*) "wkeStopLoading",     NULL, &StopLoading },
+			
+			{ (const uint8_t*) "wkeSetFocus",     NULL, &ANESetFocus },
+			{ (const uint8_t*) "wkeSetZoomFactor",     NULL, &SetZoomFactor },
+			{ (const uint8_t*) "wkeGetZoomFactor",     NULL, &GetZoomFactor },
+			
+			{ (const uint8_t*) "wkeCanGoBack",     NULL, &CanGoBack },
+			{ (const uint8_t*) "wkeGoBack",     NULL, &GoBack },
+			{ (const uint8_t*) "wkeCanGoForward",     NULL, &CanGoForward },
+			{ (const uint8_t*) "wkeGoForward",     NULL, &GoForward },
+
+
+			{ (const uint8_t*) "wkeSetCookieEnabled",     NULL, &SetCookieEnabled },
+			{ (const uint8_t*) "wkeSetCookieJarFullPath",     NULL, &SetCookieJarFullPath },
+			{ (const uint8_t*) "wkeSetLocalStorageFullPath",     NULL, &SetLocalStorageFullPath },
+			
+			{ (const uint8_t*) "wkeGC",     NULL, &GC },
+			
+			
+
 			{ (const uint8_t*) "wkeDestroyWebWindow",     NULL, &DestroyWebWindow },
 			
 		};
@@ -241,4 +516,3 @@ extern "C" {
 		return;
 	}
 }
-

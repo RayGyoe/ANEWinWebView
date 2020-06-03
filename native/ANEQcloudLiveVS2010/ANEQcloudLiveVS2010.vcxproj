@@ -188,12 +188,14 @@
   <ItemGroup>
     <ClInclude Include="ANEUtils.h" />
     <ClInclude Include="ANEWinWebView.h" />
+    <ClInclude Include="ANEwkeDocumentReadyCallback.h" />
     <ClInclude Include="FlashRuntimeExtensions.h" />
     <ClInclude Include="wke.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ANEUtils.cpp" />
     <ClCompile Include="ANEWinWebView.cpp" />
+    <ClCompile Include="ANEwkeDocumentReadyCallback.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="FlashRuntimeExtensions.lib" />

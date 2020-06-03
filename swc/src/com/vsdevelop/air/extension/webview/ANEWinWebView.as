@@ -17,6 +17,7 @@ package com.vsdevelop.air.extension.webview
 		private var _isSupported:Boolean;
 		private var initWke:Boolean;
 		private var _scale:Number = 1;
+		private var webViewObject:Object = {};
 		
 		public function ANEWinWebView()
 		{
@@ -63,9 +64,9 @@ package com.vsdevelop.air.extension.webview
 		 * @param event
 		 * 
 		 */		
-		protected function onStatus(event:Event):void
+		protected function onStatus(event:StatusEvent):void
 		{
-						
+			trace(event.level,event.code);
 		}
 		
 		
@@ -94,9 +95,20 @@ package com.vsdevelop.air.extension.webview
 		public function wkeCreateWebWindow(stage:Stage,x:int=0,y:int=0,width:int=200,height:int=200):ANEWebView
 		{
 			if(isSupported && initWke){
-				var webviewId:int = _extCtx.call("wkeCreateWebWindow",stage.nativeWindow.title,x * _scale,y * _scale,width * _scale,height * _scale) as int;
+				
+				var _x:int = x * _scale;
+				var _y:int = y * _scale;
+				var _width:int = width * _scale;
+				var _height:int = height * _scale;
+				
+				var webviewId:int = _extCtx.call("wkeCreateWebWindow",stage.nativeWindow.title,_x,_y,_width,_height) as int;
 				if(webviewId){
-					return new ANEWebView(webviewId,_extCtx);
+					var webview:ANEWebView = new ANEWebView(webviewId,_extCtx);
+					webview.wkeMoveWindow(_x,_y,_width,_height);
+					
+					webViewObject[webviewId] = webview;
+					
+					return webview;
 				}
 			}else{
 				throw Error( 'Wke is init:'+initWke+"isSupported"+isSupported);

@@ -53,6 +53,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\ANEWinWebView.ane" />
+    <element path="lib\skin.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
