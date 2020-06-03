@@ -8,6 +8,4 @@ a lighter, faster browser kernel of blink to integrate HTML UI in your app. 一�
 
 适配系统：windows
 
-![](I:\Works\eDoctor\ANEWinWebView\docs\1.png)
-
-![](I:\Works\eDoctor\ANEWinWebView\docs\2.png)
+![1](docs\1.png)![2](docs\2.png)
