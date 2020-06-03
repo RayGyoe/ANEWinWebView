@@ -348,6 +348,16 @@ package com.vsdevelop.air.extension.webview
 		}
 		
 		
+		/**
+		 * DevTools
+		 * @param devToolsHtml	file:///c:/miniblink/front_end/inspector.html
+		 * 
+		 */		
+		public function wkeSetDebugConfig(devToolsHtml:String = null):void
+		{
+			if(_extCtx && devToolsHtml)_extCtx.call("wkeSetDebugConfig",webViewId,devToolsHtml);
+		}
+		
 		
 		/**
 		 * 延迟让miniblink垃圾回收 

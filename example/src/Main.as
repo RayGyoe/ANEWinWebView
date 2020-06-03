@@ -61,15 +61,42 @@ package
 			skinView.prev.addEventListener(MouseEvent.CLICK, prevPage);
 			skinView.next.addEventListener(MouseEvent.CLICK, nextPage);
 			skinView.addwind.addEventListener(MouseEvent.CLICK, addWindows);
-			
+			skinView.hidebtn.addEventListener(MouseEvent.CLICK, visibleClick);
+			skinView.zoombtn.addEventListener(MouseEvent.CLICK, zoomClick);
+			skinView.debug.addEventListener(MouseEvent.CLICK, devTools);
 			
 			skinView.path.text = 'https://www.talkmed.com';
 			
 			
-			webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage,0,60,stage.stageWidth,stage.stageHeight-100);
+			webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage,0,60,stage.stageWidth,stage.stageHeight-60);
 			goPath();
 			
 			stage.addEventListener(Event.RESIZE, resizeView);
+		}
+		
+		private function devTools(e:MouseEvent):void 
+		{
+			var path:String = File.applicationDirectory.nativePath + '/devtools/inspector.html';
+			trace(path);
+			webviewMain.wkeSetDebugConfig(path);
+		}
+		
+		
+		private var zoomObject:Object = {1:1, 2:1.5, 3:2,4:3};
+		private var zoomIndex:int = 1;
+		private function zoomClick(e:MouseEvent):void 
+		{
+			trace('zoom', webviewMain.wkeGetZoomFactor());
+			
+			
+			webviewMain.wkeSetZoomFactor(zoomObject[zoomIndex]);
+			zoomIndex++;
+			if (zoomIndex > 4) zoomIndex = 1;
+		}
+		
+		private function visibleClick(e:MouseEvent):void 
+		{
+			webviewMain.visible = !webviewMain.visible;
 		}
 		
 		private function addWindows(e:MouseEvent):void 
@@ -125,7 +152,7 @@ package
 			//trace(stage.stageWidth,stage.stageHeight,stage.fullScreenWidth,stage.fullScreenHeight);
 			if (webviewMain)
 			{
-				webviewMain.wkeMoveWindow(0, webviewMain.y, stage.stageWidth, stage.stageHeight-webviewMain.y);
+				webviewMain.wkeMoveWindow(0, 60, stage.stageWidth, stage.stageHeight-60);
 			}
 		}
 		

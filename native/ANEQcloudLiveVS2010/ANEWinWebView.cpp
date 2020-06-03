@@ -414,6 +414,20 @@ extern "C" {
 	}
 	
 
+	
+	FREObject SetDebugConfig(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		std::string devPath = ANEutils.getString(argv[1]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			wkeSetDebugConfig(webview, "showDevTools",devPath.c_str());
+		}
+		return NULL;
+	}
+
 	FREObject GC(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 	{
 		int index = ANEutils.getInt32(argv[0]);
@@ -457,8 +471,6 @@ extern "C" {
 			{ (const uint8_t*) "wkeVersion",     NULL, &Version },
 			{ (const uint8_t*) "wkeVersionString",     NULL, &VersionString },
 
-
-
 			{ (const uint8_t*) "wkeCreateWebWindow",     NULL, &CreateWebWindow },
 			
 			{ (const uint8_t*) "wkeShowWindow",     NULL, &ANEShowWindow },
@@ -486,11 +498,11 @@ extern "C" {
 			{ (const uint8_t*) "wkeSetCookieEnabled",     NULL, &SetCookieEnabled },
 			{ (const uint8_t*) "wkeSetCookieJarFullPath",     NULL, &SetCookieJarFullPath },
 			{ (const uint8_t*) "wkeSetLocalStorageFullPath",     NULL, &SetLocalStorageFullPath },
-			
+
+
+			{ (const uint8_t*) "wkeSetDebugConfig",     NULL, &SetDebugConfig },
 			{ (const uint8_t*) "wkeGC",     NULL, &GC },
 			
-			
-
 			{ (const uint8_t*) "wkeDestroyWebWindow",     NULL, &DestroyWebWindow },
 			
 		};
