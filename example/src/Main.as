@@ -65,6 +65,8 @@ package
 			skinView.zoombtn.addEventListener(MouseEvent.CLICK, zoomClick);
 			skinView.debug.addEventListener(MouseEvent.CLICK, devTools);
 			
+			skinView.localfile.addEventListener(MouseEvent.CLICK, localHtml);
+			
 			skinView.path.text = 'https://www.talkmed.com';
 			
 			
@@ -72,6 +74,13 @@ package
 			goPath();
 			
 			stage.addEventListener(Event.RESIZE, resizeView);
+		}
+		
+		private function localHtml(e:MouseEvent):void 
+		{
+			var str:String = File.applicationDirectory.nativePath + '/assets/index.html';
+			
+			trace(str);
 		}
 		
 		private function devTools(e:MouseEvent):void 
