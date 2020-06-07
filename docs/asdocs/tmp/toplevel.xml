@@ -1,8 +1,140 @@
 <asdoc>
 
+<classRec name='ANEWebViewEvent' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent' sourcefile='I:\Works\eDoctor\ANEWinWebView\swc\src\com\vsdevelop\air\extension\webview\ANEWebViewEvent.as' namespace='com.vsdevelop.air.extension.webview' access='public' baseclass='flash.events:Event' isFinal='false' isDynamic='false' >
+</classRec>
+<method name='ANEWebViewEvent' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent/ANEWebViewEvent' isStatic='false' isFinal='false' isOverride='false'  param_names='type;DispatchData' param_types='String;*' param_defaults='undefined;null' result_type='*'>
+</method>
+<method name='clone' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent/clone' isStatic='false' isFinal='false' isOverride='true'  result_type='flash.events:Event'>
+</method>
+<field name='COMPLETE' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent/COMPLETE' type='String' isStatic='true' isConst='false' defaultValue='complete' >
+</field>
+<field name='FRAME_COMPLETE' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent/FRAME_COMPLETE' type='String' isStatic='true' isConst='false' defaultValue='frame_complete' >
+</field>
+<field name='JSCALLBACK' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent/JSCALLBACK' type='String' isStatic='true' isConst='false' defaultValue='jscallback' >
+</field>
+<field name='TITLE' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent/TITLE' type='String' isStatic='true' isConst='false' defaultValue='title' >
+</field>
+<field name='data' fullname='com.vsdevelop.air.extension.webview:ANEWebViewEvent/data' type='' isStatic='false' isConst='false' >
+</field>
 <classRec name='ANEWebView' fullname='com.vsdevelop.air.extension.webview:ANEWebView' sourcefile='I:\Works\eDoctor\ANEWinWebView\swc\src\com\vsdevelop\air\extension\webview\ANEWebView.as' namespace='com.vsdevelop.air.extension.webview' access='public' baseclass='flash.events:EventDispatcher' isFinal='false' isDynamic='false' >
 </classRec>
 <method name='ANEWebView' fullname='com.vsdevelop.air.extension.webview:ANEWebView/ANEWebView' isStatic='false' isFinal='false' isOverride='false'  param_names='webviewId;extCtx' param_types='int;flash.external:ExtensionContext' param_defaults='0;null' result_type='*'>
+</method>
+<method name='addCallBack' fullname='com.vsdevelop.air.extension.webview:ANEWebView/addCallBack' isStatic='false' isFinal='false' isOverride='false'  param_names='functionName;closure' param_types='String;Function' param_defaults='undefined;undefined' result_type='void'>
+<description><![CDATA[
+
+		 增加js回调 
+
+		 ]]></description>
+<param><![CDATA[functionName
+
+		 ]]></param>
+<param><![CDATA[closure
+
+		 
+
+		 ]]></param>
+</method>
+<method name='drawViewPortToBitmapData' fullname='com.vsdevelop.air.extension.webview:ANEWebView/drawViewPortToBitmapData' isStatic='false' isFinal='false' isOverride='false'  result_type='flash.display:BitmapData'>
+<description><![CDATA[
+
+		 绘制浏览器 
+
+		 ]]></description>
+<return><![CDATA[BitmapData
+
+		 
+
+		 ]]></return>
+</method>
+<method name='jsCall' fullname='com.vsdevelop.air.extension.webview:ANEWebView/jsCall' isStatic='false' isFinal='false' isOverride='false'  param_names='fun;args' param_types='String;restParam' param_defaults='undefined;undefined' result_type='Object'>
+<description><![CDATA[
+
+		 调用js方法 
+
+		 ]]></description>
+<param><![CDATA[fun
+
+		 ]]></param>
+<param><![CDATA[args int,number,string,boolean
+
+		 ]]></param>
+<return><![CDATA[
+
+		 
+
+		 ]]></return>
+</method>
+<method name='jsEval' fullname='com.vsdevelop.air.extension.webview:ANEWebView/jsEval' isStatic='false' isFinal='false' isOverride='false'  param_names='JSString;isInClosure' param_types='String;Boolean' param_defaults='undefined;false' result_type='Boolean'>
+<description><![CDATA[
+
+		 运行js
+
+		 ]]></description>
+<param><![CDATA[JSString
+
+		 ]]></param>
+<param><![CDATA[isInClosure
+
+		 ]]></param>
+<return><![CDATA[
+
+		 
+
+		 ]]></return>
+</method>
+<method name='jsGet' fullname='com.vsdevelop.air.extension.webview:ANEWebView/jsGet' isStatic='false' isFinal='false' isOverride='false'  param_names='key' param_types='String' param_defaults='undefined' result_type='Object'>
+<description><![CDATA[
+
+		 获取js中的参数值
+
+		 ]]></description>
+<param><![CDATA[key
+
+		 ]]></param>
+<param><![CDATA[value  int,number,string,boolean
+
+		 ]]></param>
+<return><![CDATA[
+
+		 
+
+		 ]]></return>
+</method>
+<method name='jsSet' fullname='com.vsdevelop.air.extension.webview:ANEWebView/jsSet' isStatic='false' isFinal='false' isOverride='false'  param_names='key;value' param_types='String;Object' param_defaults='undefined;undefined' result_type='Boolean'>
+<description><![CDATA[
+
+		 设置js中的参数值 
+
+		 ]]></description>
+<param><![CDATA[key
+
+		 ]]></param>
+<param><![CDATA[value int,number,string,boolean
+
+		 ]]></param>
+<return><![CDATA[
+
+		 
+
+		 ]]></return>
+</method>
+<method name='removeCallBack' fullname='com.vsdevelop.air.extension.webview:ANEWebView/removeCallBack' isStatic='false' isFinal='false' isOverride='false'  param_names='functionName;closure' param_types='String;Function' param_defaults='undefined;undefined' result_type='void'>
+<description><![CDATA[
+
+		 移除某个方法回调 
+
+		 ]]></description>
+<param><![CDATA[functionName
+
+		 ]]></param>
+<param><![CDATA[closure
+
+		 
+
+		 ]]></param>
+</method>
+<method name='valToString' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:valToString' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='*' param_defaults='undefined' result_type='String'>
 </method>
 <method name='wkeCanGoBack' fullname='com.vsdevelop.air.extension.webview:ANEWebView/wkeCanGoBack' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
 <description><![CDATA[
@@ -268,6 +400,18 @@
 
 		 ]]></description>
 </method>
+<method name='callFunction' fullname='com.vsdevelop.air.extension.webview:ANEWebView/callFunction/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Object'>
+<description><![CDATA[
+
+		 addCallBack function
+
+		 ]]></description>
+<return><![CDATA[
+
+		 
+
+		 ]]></return>
+</method>
 <method name='height' fullname='com.vsdevelop.air.extension.webview:ANEWebView/height/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
 </method>
 <method name='visible' fullname='com.vsdevelop.air.extension.webview:ANEWebView/visible/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
@@ -288,6 +432,8 @@
 </method>
 <method name='y' fullname='com.vsdevelop.air.extension.webview:ANEWebView/y/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='int' param_defaults='undefined' result_type='void'>
 </method>
+<field name='_callFunction' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_callFunction' type='Object' isStatic='false' isConst='false' defaultValue='unknown' >
+</field>
 <field name='_extCtx' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_extCtx' type='flash.external:ExtensionContext' isStatic='false' isConst='false' >
 </field>
 <field name='_height' fullname='com.vsdevelop.air.extension.webview:ANEWebView/private:_height' type='int' isStatic='false' isConst='false' >
@@ -310,6 +456,8 @@
 	 ]]></description>
 </classRec>
 <method name='ANEWinWebView' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/ANEWinWebView' isStatic='false' isFinal='false' isOverride='false'  result_type='*'>
+</method>
+<method name='argArrayEncode' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/protected:argArrayEncode' isStatic='false' isFinal='false' isOverride='false'  param_names='array' param_types='Array' param_defaults='undefined' result_type='Array'>
 </method>
 <method name='getInstance' fullname='com.vsdevelop.air.extension.webview:ANEWinWebView/getInstance' isStatic='true' isFinal='false' isOverride='false'  result_type='com.vsdevelop.air.extension.webview:ANEWinWebView'>
 </method>
