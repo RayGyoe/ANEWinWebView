@@ -16,6 +16,6 @@ Miniblink/node.dll
 
 
 
-适配系统：windows
+适配系统：win xp,win 7,win 8,win10
 
 ![1](/docs/1.png)![2](/docs/2.png)
