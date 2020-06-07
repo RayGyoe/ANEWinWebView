@@ -3,6 +3,7 @@
   <includeClasses>
     <classEntry path="com.vsdevelop.air.extension.webview.ANEWinWebView"/>
     <classEntry path="com.vsdevelop.air.extension.webview.ANEWebView"/>
+    <classEntry path="com.vsdevelop.air.extension.webview.ANEWebViewEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

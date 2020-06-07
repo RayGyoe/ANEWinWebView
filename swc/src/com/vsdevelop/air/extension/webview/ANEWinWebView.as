@@ -66,9 +66,69 @@ package com.vsdevelop.air.extension.webview
 		 */		
 		protected function onStatus(event:StatusEvent):void
 		{
-			trace(event.level,event.code);
+			//trace(event.level,event.code);
+			
+			var array:Array = event.level.split("|-|");
+			var webView:ANEWebView = webViewObject[int(array[0])];
+			
+			
+			switch(event.code)
+			{
+				case ANEWebViewEvent.FRAME_COMPLETE:
+					if(webView){
+						webView.dispatchEvent(new ANEWebViewEvent(event.code,int(array[1])));
+					}
+					break;
+				case ANEWebViewEvent.TITLE:
+					if(webView){
+						webView.dispatchEvent(new ANEWebViewEvent(event.code,String(array[1])));
+					}
+					break;
+				
+				case ANEWebViewEvent.JSCALLBACK:
+					//
+					if(webView && webView.callFunction[array[1]]){
+						const fun:Function = webView.callFunction[array[1]];
+						fun.apply(null,argArrayEncode(array));
+					}
+					break;
+				
+				default:					
+					if(webView){
+						webView.dispatchEvent(new ANEWebViewEvent(event.code));
+					}	
+					break;
+			}
 		}
 		
+		protected function argArrayEncode(array:Array):Array
+		{
+			var args:Array = [];
+			if(array.length>2)
+			{
+				var il:int = array.length;
+				for(var i:int = 2;i<il;i++)
+				{
+					var value:String = array[i];					
+					switch(value)
+					{
+						case "false":
+							args[args.length] = false;
+							break;
+						case "true":
+							args[args.length] = true;
+						case "null":
+							args[args.length] = null;
+							break;
+						default:
+							args[args.length] = value;
+							break;
+					}
+					
+				}
+			}			
+			return args;
+		}		
 		
 		
 		/**

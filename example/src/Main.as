@@ -2,9 +2,12 @@ package
 {
 	//import flash.desktop.NativeApplication;
 	import com.vsdevelop.air.extension.webview.ANEWebView;
+	import com.vsdevelop.air.extension.webview.ANEWebViewEvent;
 	import com.vsdevelop.air.extension.webview.ANEWinWebView;
 	import com.vsdevelop.controls.Fps;
 	import flash.desktop.NativeApplication;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.NativeWindow;
 	import flash.display.NativeWindowInitOptions;
 	import flash.events.Event;
@@ -35,8 +38,6 @@ package
 			
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			// touch or gesture?
-			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
-			
 			// entry point
 			stage.align = StageAlign.TOP_LEFT;
 			
@@ -48,7 +49,6 @@ package
 			}
 			
 			//NativeApplication.nativeApplication
-			
 			
 			//addChild(new Fps());
 			
@@ -63,25 +63,88 @@ package
 			skinView.addwind.addEventListener(MouseEvent.CLICK, addWindows);
 			skinView.hidebtn.addEventListener(MouseEvent.CLICK, visibleClick);
 			skinView.zoombtn.addEventListener(MouseEvent.CLICK, zoomClick);
-			skinView.debug.addEventListener(MouseEvent.CLICK, devTools);
 			
+			
+			skinView.debug.addEventListener(MouseEvent.CLICK, devTools);
 			skinView.localfile.addEventListener(MouseEvent.CLICK, localHtml);
+			
+			skinView.drawview.addEventListener(MouseEvent.CLICK, drawToBitmapData);
+			
+			
+			skinView.jscall.addEventListener(MouseEvent.CLICK, astojs);
+			skinView.setjs.addEventListener(MouseEvent.CLICK, astojs);
+			skinView.getjs.addEventListener(MouseEvent.CLICK, astojs);
 			
 			skinView.path.text = 'https://www.talkmed.com';
 			
 			
-			webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage,0,60,stage.stageWidth,stage.stageHeight-60);
+			webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage, 0, 60, stage.stageWidth, stage.stageHeight - 60);
+			webviewMain.addEventListener(ANEWebViewEvent.COMPLETE, webViewEvents);
+			webviewMain.addEventListener(ANEWebViewEvent.TITLE, webViewEvents);
+			webviewMain.addEventListener(ANEWebViewEvent.FRAME_COMPLETE, webViewEvents);
+			webviewMain.addEventListener(ANEWebViewEvent.JSCALLBACK, webViewEvents);
+			webviewMain.addCallBack("asfunction", function(arg1:int,arg2:String):void{
+				
+				trace(arguments);
+			});
+			webviewMain.wkeShowWindow();
+			
+			
 			goPath();
 			
 			stage.addEventListener(Event.RESIZE, resizeView);
+			
+			var a:int = 1;
+			trace(typeof true)
 		}
+		
+		private function drawToBitmapData(e:MouseEvent):void 
+		{
+			var bitmapdata:BitmapData = webviewMain.drawViewPortToBitmapData();
+			trace(bitmapdata);
+			
+			var bitmap:Bitmap = new Bitmap(bitmapdata);			
+			addChild(bitmap);
+			bitmap.scaleX = bitmap.scaleY =  stage.stageWidth / bitmap.width;
+			
+			
+			bitmap.y = 60;
+			
+			webviewMain.visible = false;
+		}
+		
+		private function webViewEvents(e:ANEWebViewEvent):void 
+		{
+			trace("webViewEvents",e.type, e.data);
+		}
+		
 		
 		private function localHtml(e:MouseEvent):void 
 		{
-			var str:String = File.applicationDirectory.nativePath + '/assets/index.html';
+			//http://hook.test/
+			var str:String = ""+File.applicationDirectory.nativePath + '/assets/index.html';
 			
 			trace(str);
+			
+			webviewMain.wkeLoadURL(str);
 		}
+		private function astojs(e:MouseEvent):void 
+		{
+			switch (e.target){
+				case skinView.jscall:
+					trace(webviewMain.jsCall("astojs",2,"string"));
+					break;
+				case skinView.setjs:
+					trace(webviewMain.jsSet("jsValue","ANEWebView AS3 Set Value 2.0"));
+					break;
+					
+				case skinView.getjs:
+					trace(webviewMain.jsGet("jsValue"));
+					break;
+			}
+			
+		}
+		
 		
 		private function devTools(e:MouseEvent):void 
 		{
@@ -111,22 +174,8 @@ package
 		private function addWindows(e:MouseEvent):void 
 		{
 			windowId++;
-				
 			
-			var windowinit:NativeWindowInitOptions = new NativeWindowInitOptions();
-			var newWindow:NativeWindow = new NativeWindow(windowinit);
-			
-			var ws:int = stage.fullScreenWidth * 0.5;
-			var hs:int = stage.fullScreenHeight * 0.5;
-			newWindow.bounds = new Rectangle(ws*0.5, hs*0.5, ws, hs);
-			newWindow.activate();
-		
-			var windowTitle:String = "window-" + windowId;
-			
-			newWindow.title = windowTitle;
-			
-			var webview:ANEWebView = ANEWinWebView.getInstance().wkeCreateWebWindow(newWindow.stage,0,0,ws-20,hs-20);
-			webview.wkeLoadURL('https://www.talkmed.com');
+			new windowWebView("window-" + windowId);
 		}
 		
 		private function nextPage(e:MouseEvent):void 
@@ -153,6 +202,10 @@ package
 		private function goPath(e:MouseEvent = null):void 
 		{
 			webviewMain.wkeLoadURL(skinView.path.text);
+			if (!webviewMain.visible)
+			{
+				webviewMain.visible = true;
+			}
 		}
 		
 		private function resizeView(e:Event):void 

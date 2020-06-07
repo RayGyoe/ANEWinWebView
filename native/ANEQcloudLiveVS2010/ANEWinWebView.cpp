@@ -28,6 +28,11 @@ extern "C" {
 	std::map<int, int>VectorWkeWebViewIndex;
 	//events
 
+	//call back
+	std::map<std::string, std::string>VectorWkeJsCallBack;
+
+
+	std::string PARTITION = "|-|";
 
 	// 回调：文档加载成功
 	void handleDocumentReady(wkeWebView webWindow, void * param, wkeWebFrameHandle frameId)
@@ -38,13 +43,24 @@ extern "C" {
 
 
 		if (wkeIsMainFrame(webWindow, frameId)) {
-			ANEutils.dispatchEvent("COMPLETE", ANEutils.intToStdString(indexId) + "||" + ANEutils.intToStdString((int)frameId));
+			ANEutils.dispatchEvent("complete", ANEutils.intToStdString(indexId) + PARTITION + ANEutils.intToStdString((int)frameId));
 		}
 		else {
-			ANEutils.dispatchEvent("FRAME_COMPLETE", ANEutils.intToStdString(indexId) + "||" + ANEutils.intToStdString((int)frameId));
+			ANEutils.dispatchEvent("frame_complete", ANEutils.intToStdString(indexId) + PARTITION + ANEutils.intToStdString((int)frameId));
 		}
 	}
+	void handleTitleChanged(wkeWebView webWindow, void* param, const wkeString title)
+	{
+		int indexId = *(int*)param;
 
+
+		std::string wstr = ANEutils.ws2s(wkeGetStringW(title));
+
+		std::string str= ANEutils.string_To_UTF8(wstr);
+
+
+		ANEutils.dispatchEvent("title", ANEutils.intToStdString(indexId) + PARTITION + str);
+	}
 
 
 	//events
@@ -133,7 +149,7 @@ extern "C" {
 
 			//WKE_WINDOW_TYPE_CONTROL
 			wkeWebView webview = wkeCreateWebWindow(WKE_WINDOW_TYPE_CONTROL, window, x, y, width, height);
-			wkeShowWindow(webview, true);
+			
 
 			VectorWkeWebView[webview_Index] = webview;
 			VectorWkeWebViewIndex[webview_Index] = index;
@@ -143,7 +159,7 @@ extern "C" {
 			//wkeOnDocumentReady(webview, handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
 
 			wkeOnDocumentReady2(webview,handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
-
+			wkeOnTitleChanged(webview, handleTitleChanged, &VectorWkeWebViewIndex[webview_Index]);
 			return ANEutils.getFREObject(webview_Index);
 		}
 
@@ -366,6 +382,58 @@ extern "C" {
 	}
 	
 
+	FREObject drawViewPortToBitmapData(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+		printf("\n%s,  drawViewPortToBitmapData %i", TAG, index);
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			int w = wkeGetContentWidth(webview);
+			int h = wkeGetContentHeight(webview);
+
+			int cw = wkeGetWidth(webview);
+			int ch = wkeGetHeight(webview);
+			//wkeResize(webview, w, h);
+			//wkeUpdate();
+
+			int pixels_length = cw * ch * 4;
+			void * bits = malloc(pixels_length);
+			wkePaint(webview, bits, 0);
+
+			printf("\n%s,  bitmapdata  w=%i  h=%i length= %i", TAG, cw, ch, pixels_length);
+
+			FREObject objectByteArray = argv[1];
+			FREByteArray byteArray;
+			FREObject length;
+			FRENewObjectFromUint32(pixels_length, &length);
+			FRESetObjectProperty(objectByteArray, (const uint8_t*) "length", length, NULL);
+			FREAcquireByteArray(objectByteArray, &byteArray);
+			//copyMutex.lock();
+			memcpy(byteArray.bytes, bits, pixels_length);
+			//copyMutex.unlock();
+			FREReleaseByteArray(objectByteArray);
+
+			printf("\n%s,  copy finish", TAG);
+			//not work
+			/*
+			FREObject freArguments[4] = { ANEutils.getFREObject(cw), ANEutils.getFREObject(ch), ANEutils.getFREObject(0), ANEutils.getFREObject(uint32_t(0xFF0000)) };
+			FREObject bitmap_data_object;
+			FRENewObject((uint8_t *)"flash.display.BitmapData", 4, freArguments, &bitmap_data_object, NULL);
+			FREBitmapData bitmapData;
+			FREAcquireBitmapData(bitmap_data_object, &bitmapData);
+			memcpy(bitmapData.bits32, pixels, length);
+			FREReleaseBitmapData(bitmap_data_object);*/
+
+			free(bits);
+
+
+			//return bitmap_data_object;
+
+			return ANEutils.getFREObject(std::to_string(cw)+ PARTITION +std::to_string(ch));
+		}
+
+		return NULL;
+	}
 
 	FREObject SetCookieEnabled(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 	{
@@ -414,7 +482,226 @@ extern "C" {
 	}
 	
 
+	jsValue jsBindCallParam(jsExecState es, void* param)
+	{
+		std::string toAir = *(std::string*)param;
+		int argCount = jsArgCount(es);
+
+		int valueCount = 0;
+		if (argCount)
+		{
+			for (int i = 0; i < argCount; i++)
+			{
+				jsType type = jsArgType(es, i);
+				jsValue value = jsArg(es, i);
+
+				switch (type)
+				{
+					case JSTYPE_NUMBER:
+						toAir += PARTITION + std::to_string(jsToFloat(es, value));
+						++valueCount;
+						break;
+					case JSTYPE_STRING:
+						toAir += PARTITION + jsToString(es, value);
+						++valueCount;
+						break;
+					case JSTYPE_BOOLEAN:						
+						toAir += PARTITION + (jsIsTrue(value) ? "true" : "false");
+						++valueCount;
+						break;
+					case JSTYPE_OBJECT:
+						jsEvalExW(es, L"alert('object  type not supported')", true);
+						break;
+					case JSTYPE_FUNCTION:
+						jsEvalExW(es, L"alert('function  type not supported')", true);
+						break;
+					case JSTYPE_UNDEFINED:
+						toAir += PARTITION + "null";
+						++valueCount;
+						break;
+					case JSTYPE_ARRAY:
+						jsEvalExW(es, L"alert('array  type not supported')", true);
+						break;
+				}
+			}
+		}
+		printf("\n%s,%s   = toAir=%s      argCount=%d", TAG, "jsBindCallParam", toAir, argCount);
+		if (valueCount == argCount)
+		{
+			ANEutils.dispatchEvent("jscallback",toAir);
+		}
+		else {
+
+		}
+
+		
+		return jsUndefined();
+	}
+
+	FREObject JsBindFunction(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		std::string functionName = ANEutils.getString(argv[1]);
+		int argCount = ANEutils.getInt32(argv[2]);
+
+
+		printf("\n%s,  JsBindFunction %s   = %i", TAG, functionName.c_str(), argCount);
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+
+			std::string bind = std::to_string(index) + PARTITION + functionName;
+			VectorWkeJsCallBack[bind] = bind;
+
+			wkeJsBindFunction(functionName.c_str(), jsBindCallParam, &VectorWkeJsCallBack[bind],argCount);
+			return ANEutils.getFREObject(true);
+		}
+		return ANEutils.getFREObject(false);
+	}
+
 	
+	FREObject EvalExW(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		std::wstring js = ANEutils.s2ws(ANEutils.getString(argv[1]));
+		bool isInClosure = ANEutils.getBool(argv[2]);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			jsExecState es = wkeGlobalExec(webview);
+			jsEvalExW(es, js.c_str(), isInClosure);
+			return ANEutils.getFREObject(true);
+		}
+		return ANEutils.getFREObject(false);
+	}
+
+	FREObject Call(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+		
+		std::string funcName = ANEutils.getString(argv[1]);
+
+		printf("\n=====%i", argc);
+
+		wkeWebView webview = VectorWkeWebView[index];
+		if (webview) {
+			jsExecState es = wkeGlobalExec(webview);
+
+			jsValue fun = jsGetGlobal(es, funcName.c_str());
+			jsType type = jsTypeOf(fun);
+
+			printf("\n%s,  Call %i", TAG, type);
+
+			if (type == JSTYPE_FUNCTION) 
+			{
+				int args_count = argc - 2;
+
+				jsValue *args =  new jsValue[args_count]();
+
+				for (uint32_t i = 2; i < argc; i++) {
+					args[i-2] = jsString(es,ANEutils.getString(argv[i]).c_str());
+				}
+				//args[0] = jsInt(1);
+				//jsCall(es, fun, thisValue,args, sizeof(args));
+
+				jsValue value = jsCallGlobal(es, fun, args, args_count);
+				type = jsTypeOf(value);
+				printf("\n%s,  jsCallGlobal %i", TAG, type);
+				
+				switch (type)
+				{
+				case JSTYPE_NUMBER:
+					return ANEutils.getFREObject(std::to_string(jsToFloat(es, value)));
+					break;
+				case JSTYPE_STRING:
+					return ANEutils.getFREObject(jsToString(es, value));
+					break;
+				case JSTYPE_BOOLEAN:
+					return ANEutils.getFREObject(jsIsTrue(value));
+					break;
+				case JSTYPE_OBJECT:
+					jsEvalExW(es, L"alert('object  type not supported')", true);
+					break;
+				case JSTYPE_FUNCTION:
+					jsEvalExW(es, L"alert('function  type not supported')", true);
+					break;
+				case JSTYPE_UNDEFINED:
+					break;
+				case JSTYPE_ARRAY:
+					jsEvalExW(es, L"alert('array  type not supported')", true);
+					break;
+				}
+			}
+			
+			
+		}
+		return NULL;
+	}
+
+
+	FREObject SetGlobal(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+
+		std::string funcName = ANEutils.getString(argv[1]);
+		std::string value = ANEutils.getString(argv[2]);
+
+
+		wkeWebView webview = VectorWkeWebView[index];
+
+		if (webview) {
+			jsExecState es = wkeGlobalExec(webview);
+
+			jsSetGlobal(es, funcName.c_str(), jsString(es, value.c_str()));
+			return ANEutils.getFREObject(true);
+		}
+
+		return ANEutils.getFREObject(false);
+	}
+	FREObject GetGlobal(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
+	{
+		int index = ANEutils.getInt32(argv[0]);
+		wkeWebView webview = VectorWkeWebView[index];
+
+		std::string funcName = ANEutils.getString(argv[1]);
+
+		if (webview) {
+			jsExecState es = wkeGlobalExec(webview);
+			jsValue value = jsGetGlobal(es, funcName.c_str());
+
+			jsType type = jsTypeOf(value);
+			printf("\n%s,  jsGetGlobal %i", TAG, type);
+
+			switch (type)
+			{
+			case JSTYPE_NUMBER:
+				return ANEutils.getFREObject(std::to_string(jsToFloat(es, value)));
+				break;
+			case JSTYPE_STRING:
+				return ANEutils.getFREObject(jsToString(es, value));
+				break;
+			case JSTYPE_BOOLEAN:
+				return ANEutils.getFREObject(jsIsTrue(value));
+				break;
+			case JSTYPE_OBJECT:
+				jsEvalExW(es, L"alert('object  type not supported')", true);
+				break;
+			case JSTYPE_FUNCTION:
+				jsEvalExW(es, L"alert('function  type not supported')", true);
+				break;
+			case JSTYPE_UNDEFINED:
+				break;
+			case JSTYPE_ARRAY:
+				jsEvalExW(es, L"alert('array  type not supported')", true);
+				break;
+			}
+		}
+
+		return NULL;
+	}
+
+
 	FREObject SetDebugConfig(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 	{
 		int index = ANEutils.getInt32(argv[0]);
@@ -445,11 +732,7 @@ extern "C" {
 	FREObject DestroyWebWindow(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 	{
 		int index = ANEutils.getInt32(argv[0]);
-		int x = ANEutils.getInt32(argv[1]);
-		int y = ANEutils.getInt32(argv[2]);
-		int width = ANEutils.getInt32(argv[3]);
-		int height = ANEutils.getInt32(argv[4]);
-
+		printf("\n%s,  DestroyWebWindow = %i", TAG, index);
 		wkeWebView webview = VectorWkeWebView[index];
 		if (webview) {
 			wkeDestroyWebWindow(webview);
@@ -471,8 +754,7 @@ extern "C" {
 			{ (const uint8_t*) "wkeVersion",     NULL, &Version },
 			{ (const uint8_t*) "wkeVersionString",     NULL, &VersionString },
 
-			{ (const uint8_t*) "wkeCreateWebWindow",     NULL, &CreateWebWindow },
-			
+			{ (const uint8_t*) "wkeCreateWebWindow",     NULL, &CreateWebWindow },			
 			{ (const uint8_t*) "wkeShowWindow",     NULL, &ANEShowWindow },
 
 			{ (const uint8_t*) "wkeLoadURL",     NULL, &LoadURL },
@@ -494,11 +776,20 @@ extern "C" {
 			{ (const uint8_t*) "wkeCanGoForward",     NULL, &CanGoForward },
 			{ (const uint8_t*) "wkeGoForward",     NULL, &GoForward },
 
+			{ (const uint8_t*) "drawViewPortToBitmapData",     NULL, &drawViewPortToBitmapData },
+
 
 			{ (const uint8_t*) "wkeSetCookieEnabled",     NULL, &SetCookieEnabled },
 			{ (const uint8_t*) "wkeSetCookieJarFullPath",     NULL, &SetCookieJarFullPath },
 			{ (const uint8_t*) "wkeSetLocalStorageFullPath",     NULL, &SetLocalStorageFullPath },
 
+
+			{ (const uint8_t*) "wkeJsBindFunction",     NULL, &JsBindFunction },
+			{ (const uint8_t*) "jsEvalExW",     NULL, &EvalExW },
+			{ (const uint8_t*) "jsCall",     NULL, &Call },
+			{ (const uint8_t*) "jsSet",     NULL, &SetGlobal },
+			{ (const uint8_t*) "jsGet",     NULL, &GetGlobal },
+			
 
 			{ (const uint8_t*) "wkeSetDebugConfig",     NULL, &SetDebugConfig },
 			{ (const uint8_t*) "wkeGC",     NULL, &GC },

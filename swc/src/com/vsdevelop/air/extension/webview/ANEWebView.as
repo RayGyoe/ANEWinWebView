@@ -1,11 +1,14 @@
 package com.vsdevelop.air.extension.webview
 {
+	import flash.display.BitmapData;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	import flash.external.ExtensionContext;
 	import flash.filesystem.File;
 	import flash.geom.Rectangle;
 	import flash.net.dns.AAAARecord;
+	import flash.utils.ByteArray;
+	import flash.utils.Endian;
 	
 	public class ANEWebView extends EventDispatcher
 	{
@@ -18,6 +21,10 @@ package com.vsdevelop.air.extension.webview
 		private var _height:int;
 		
 		private var _visible:Boolean = true;
+		
+		
+		//存储绑定js的回调
+		private var _callFunction:Object = {};
 		
 		public function ANEWebView(webviewId:int=0,extCtx:ExtensionContext = null)
 		{
@@ -32,7 +39,6 @@ package com.vsdevelop.air.extension.webview
 			wkeSetCookieJarFullPath();
 			wkeSetLocalStorageFullPath();
 		}
-		
 		
 		
 		
@@ -93,8 +99,16 @@ package com.vsdevelop.air.extension.webview
 		}
 
 		
-		
-		
+		/**
+		 * addCallBack function
+		 * @return 
+		 * 
+		 */		
+		public function get callFunction():Object
+		{
+			return _callFunction;
+		}
+
 		
 		/**
 		 * 控制窗口是否显示
@@ -288,6 +302,34 @@ package com.vsdevelop.air.extension.webview
 		}
 		
 		
+		/**
+		 * 绘制浏览器 
+		 * @return BitmapData
+		 * 
+		 */		
+		public function drawViewPortToBitmapData () : BitmapData
+		{
+			if(_extCtx){
+				var darwByteArray:ByteArray = new ByteArray();
+				var rect:String = _extCtx.call("drawViewPortToBitmapData",webViewId,darwByteArray) as String;
+				trace(rect);
+				if(rect){
+					darwByteArray.position = 0;
+					darwByteArray.endian = Endian.LITTLE_ENDIAN;
+					var whArr:Array = rect.split("|-|");
+					var bitmapdata:BitmapData = new BitmapData(int(whArr[0]),int(whArr[1]));
+					
+					if (darwByteArray.bytesAvailable)
+					{
+						bitmapdata.setPixels(bitmapdata.rect, darwByteArray);
+					}
+					return bitmapdata;
+				}
+				
+			}
+			return null;
+		}
+		
 		
 		/**
 		 *  开启或关闭cookie
@@ -346,6 +388,162 @@ package com.vsdevelop.air.extension.webview
 				_extCtx.call("wkeSetLocalStorageFullPath",webViewId,path);
 			}
 		}
+		
+		
+		
+		
+		/**
+		 * JS 相关
+		 * 
+		 */ 
+		
+		
+		/**
+		 * 增加js回调 
+		 * @param functionName
+		 * @param closure
+		 * 
+		 */		
+		public function addCallBack (functionName:String, closure:Function) : void
+		{
+			if(_extCtx){
+				if(_extCtx.call("wkeJsBindFunction",webViewId,functionName,closure.length))
+				{
+					_callFunction[functionName] = closure;
+				}
+			}
+		}
+		/**
+		 * 移除某个方法回调 
+		 * @param functionName
+		 * @param closure
+		 * 
+		 */		
+		public function removeCallBack (functionName:String, closure:Function) : void
+		{
+			if(_extCtx){
+				if(_callFunction[functionName])delete _callFunction[functionName];
+			}
+		}
+		
+		
+		
+		
+		/**
+		 * 运行js
+		 * @param JSString
+		 * @param isInClosure
+		 * @return 
+		 * 
+		 */
+		public function jsEval(JSString:String,isInClosure:Boolean=false):Boolean
+		{
+			if(_extCtx)
+			{
+				return _extCtx.call("jsEvalExW",webViewId,JSString,isInClosure) as Boolean;
+			}
+			return false;
+		}
+		
+		
+		/**
+		 * 调用js方法 
+		 * @param fun
+		 * @param args int,number,string,boolean
+		 * @return 
+		 * 
+		 */		
+		public function jsCall(fun:String,...args):Object
+		{
+			if(_extCtx)
+			{
+				var il:int  = args.length;
+				
+				for(var i:int=0;i<il;i++)
+				{
+					var type:String = (typeof args[i]);
+					if(type=="boolean" || type=="number" || type=="int" || type=="string"){
+						
+					}else{
+						throw Error( type+' type is not support');
+					}
+				}
+				
+				
+				switch(il){
+					case 1:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0])) as Object;
+						break;
+					case 2:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1])) as Object;
+						break;
+					case 3:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2])) as Object;
+						break;
+					case 4:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2]),valToString(args[3])) as Object;
+						break;
+					case 5:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2]),valToString(args[3]),valToString(args[4])) as Object;
+						break;
+					case 6:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2]),valToString(args[3]),valToString(args[4]),valToString(args[5])) as Object;
+						break;
+					case 7:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2]),valToString(args[3]),valToString(args[4]),valToString(args[5]),valToString(args[6])) as Object;
+						break;
+					case 8:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2]),valToString(args[3]),valToString(args[4]),valToString(args[5]),valToString(args[6]),valToString(args[7])) as Object;
+						break;
+					case 9:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2]),valToString(args[3]),valToString(args[4]),valToString(args[5]),valToString(args[6]),valToString(args[7]),valToString(args[8])) as Object;
+						break;
+					case 10:
+						return _extCtx.call("jsCall",webViewId,fun,valToString(args[0]),valToString(args[1]),valToString(args[2]),valToString(args[3]),valToString(args[4]),valToString(args[5]),valToString(args[6]),valToString(args[7]),valToString(args[8]),valToString(args[9])) as Object;
+						break;
+				}
+			}
+			return null;
+		}
+		
+		/**
+		 * 设置js中的参数值 
+		 * @param key
+		 * @param value int,number,string,boolean
+		 * @return 
+		 * 
+		 */		
+		public function jsSet(key:String,value:Object):Boolean
+		{
+			if(_extCtx)
+			{
+				return _extCtx.call("jsSet",webViewId,key,valToString(value)) as Boolean;
+			}
+			return false;
+		}
+		
+		/**
+		 * 获取js中的参数值
+		 * @param key
+		 * @param value  int,number,string,boolean
+		 * @return 
+		 * 
+		 */		
+		public function jsGet(key:String):Object
+		{
+			if(_extCtx)
+			{
+				return _extCtx.call("jsGet",webViewId,key) as Object;
+			}			
+			return null;
+		}
+		
+		
+		private function valToString(value:*):String
+		{
+			return String(value);	
+		}
+		
 		
 		
 		/**

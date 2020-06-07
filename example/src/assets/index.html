@@ -3,13 +3,77 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
+		
+		<style>
+		
+			a{
+				background-color: #00948c;
+				padding: 4px 10px;
+				color: #fff;
+				border: 8px;
+				text-decoration: none;
+			}
+
+			a:hover{
+				background-color: cadetblue;
+			}
+
+			#debug{
+				border: solid 1px #00948c;
+				margin: 10px;
+				min-height: 300px;
+			}
+		</style>
 </head>
 <body>
+	
+	<div>
+		<a href="javascript:getAsValue()">get as3 value</a>
+		<a  href="javascript:setAsValue()">set as3 value</a>
+	</div>
 
+
+	<div id="debug">
+
+	</div>
 	<script>
 	
-		console.log(this);
 		
+
+		console.log(this);
+
+		var debug = document.querySelector("#debug");
+		
+		var jsValue = "ANEWebView1.0";
+		
+		var asValue = null;
+		
+		
+		function astojs(str,pp)
+		{
+			var p = jsValue + "="+str+"|"+pp;
+			debug.append('astojs '+p);
+			return p;
+		}
+		
+		function setAsValue() {
+			
+			if(window['asfunction2']){
+				window['asfunction2']("555",1.346578,"abc");
+			}else{
+				alert(2);
+			}
+		}
+
+		function getAsValue() {
+			if(window['asfunction']){
+				window['asfunction'](11,"abc");
+				debug.append('call');
+			}else{
+				debug.append('not function');
+			}
+		}
+
 	</script>
 	
 </body>
