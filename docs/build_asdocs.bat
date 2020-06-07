@@ -1,6 +1,6 @@
 REM Get the path to the script and trim to get the directory.
 @echo off
-SET projectName=ANEQcloudLive
+SET projectName=ANEWinWebView
 echo Setting path to current directory to:
 SET pathtome=%~dp0
 echo %pathtome%
