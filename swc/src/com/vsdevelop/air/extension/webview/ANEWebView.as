@@ -195,11 +195,11 @@ package com.vsdevelop.air.extension.webview
 		{
 			var _scale:Number= ANEWinWebView.getInstance().scale;
 			
-			_x = int(x * _scale);
-			_y = int(y * _scale);
-			_width=int(width*_scale);
-			_height=int(height*_scale);
-			if(_extCtx)_extCtx.call("wkeMoveWindow",webViewId,_x,_y,_width,_height);
+			_x = x;
+			_y = y;
+			_width = width;
+			_height = height;
+			if(_extCtx)_extCtx.call("wkeMoveWindow",webViewId,int(x * _scale),int(y * _scale),int(width*_scale),int(height*_scale));
 		}
 		
 		
