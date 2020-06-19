@@ -39,7 +39,7 @@ extern "C" {
 	{
 		int indexId = *(int*)param;
 
-		printf("\n%s,%s   = webviewid=%d    =  %d", TAG, "handleDocumentReady", indexId, frameId);
+		//printf("\n%s,%s   = webviewid=%d    =  %d", TAG, "handleDocumentReady", indexId, frameId);
 
 
 		if (wkeIsMainFrame(webWindow, frameId)) {
@@ -142,7 +142,7 @@ extern "C" {
 		int width = ANEutils.getInt32(argv[3]);
 		int height = ANEutils.getInt32(argv[4]);
 
-		printf("\n%s,  window1 id=%d", TAG, window);
+		//printf("\n%s,  window1 id=%d", TAG, window);
 		if (window != NULL)
 		{
 			int index = webview_Index += 1;

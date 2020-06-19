@@ -32,11 +32,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="FlashRuntimeExtensions.lib">
-      <Filter>资源文件</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="ANEWinWebView.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
