@@ -3,7 +3,9 @@ ANEUtils.cpp(141): warning C4267: “参数”: 从“size_t”转换到“int�
 ANEUtils.cpp(163): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
 ANEUtils.cpp(171): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
   ANEWinWebView.cpp
-ANEWinWebView.cpp(87): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+ANEWinWebView.cpp(91): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(284) : 参见“wcscat”的声明
+ANEWinWebView.cpp(95): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(284) : 参见“wcscat”的声明
   ANEwkeDocumentReadyCallback.cpp
      正在创建库 I:\Works\eDoctor\ANEWinWebView\native\x64\Release\ANEWinWebView.lib 和对象 I:\Works\eDoctor\ANEWinWebView\native\x64\Release\ANEWinWebView.exp

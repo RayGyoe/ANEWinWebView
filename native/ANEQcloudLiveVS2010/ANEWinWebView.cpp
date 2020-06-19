@@ -84,7 +84,17 @@ extern "C" {
 		TCHAR dllPath[MAX_PATH];
 		GetModuleFileName(nullptr, dllPath, MAX_PATH);
 		PathRemoveFileSpec(dllPath);
-		wcscat(dllPath, L"\\MiniBlink\\");
+
+		void* p = 0;
+		int bit = sizeof(p);
+		if (bit == 8) {
+			wcscat(dllPath, L"\\MiniBlink\\x64\\");
+		}
+		else
+		{
+			wcscat(dllPath, L"\\MiniBlink\\x86\\");
+		}
+
 		printf("\n%s---%ls", TAG, dllPath);
 		SetDllDirectory(dllPath);
 
