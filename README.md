@@ -8,11 +8,13 @@ a lighter, faster browser kernel of blink to integrate HTML UI in your app. 一�
 
 运行 example ：
 
-copy native/libs/node.dll to AIRSDK/bin 
+copy example\src\Miniblink to AIRSDK/bin 
 
-create folder [Miniblink]
 
-Miniblink/node.dll
+
+PS:select according to platforms
+
+Miniblink/{Platform}/node.dll
 
 
 
