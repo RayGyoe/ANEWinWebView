@@ -39,7 +39,7 @@ extern "C" {
 	{
 		int indexId = *(int*)param;
 
-		printf("\n%s,%s   = webviewid=%d    =  %d", TAG, "handleDocumentReady", indexId, frameId);
+		//printf("\n%s,%s   = webviewid=%d    =  %d", TAG, "handleDocumentReady", indexId, frameId);
 
 
 		if (wkeIsMainFrame(webWindow, frameId)) {
@@ -63,6 +63,10 @@ extern "C" {
 	}
 
 
+	void onConsoleMessage(wkeWebView webView, void* param, wkeConsoleLevel level, const wkeString message, const wkeString sourceName, unsigned sourceLine, const wkeString stackTrace)
+	{
+		const utf8* msg = wkeToString(message);
+	}
 	//events
 
 
@@ -84,12 +88,23 @@ extern "C" {
 		TCHAR dllPath[MAX_PATH];
 		GetModuleFileName(nullptr, dllPath, MAX_PATH);
 		PathRemoveFileSpec(dllPath);
-		wcscat(dllPath, L"\\MiniBlink\\");
-		printf("\n%s---%ls", TAG, dllPath);
-		SetDllDirectory(dllPath);
 
-		HMODULE hWke = LoadLibrary(L"node.dll");
-		wkeSetWkeDllHandle(hWke);
+		void* p = 0;
+		int bit = sizeof(p);
+		if (bit == 8) {
+			wcscat(dllPath, L"\\MiniBlink\\x64\\node.dll");
+		}
+		else
+		{
+			wcscat(dllPath, L"\\MiniBlink\\x86\\node.dll");
+		}
+
+		printf("\n%s---%ls", TAG, dllPath);
+
+		//SetDllDirectory(dllPath);
+		//HMODULE hWke = LoadLibrary(L"node.dll");
+		//wkeSetWkeDllHandle(hWke);
+		wkeSetWkeDllPath(dllPath);
 
 		int init = wkeInitialize();
 
@@ -134,6 +149,10 @@ extern "C" {
 
 		std::string windowTitle = ANEutils.getString(argv[0]);
 
+		std::wstring title = ANEutils.s2ws(windowTitle);
+
+		printf("\n%s,title=%s", TAG, windowTitle.c_str());
+
 		HWND window = FindWindow(NULL, ANEutils.stringToLPCWSTR(windowTitle));
 
 
@@ -142,15 +161,14 @@ extern "C" {
 		int width = ANEutils.getInt32(argv[3]);
 		int height = ANEutils.getInt32(argv[4]);
 
-		printf("\n%s,  window1 id=%d", TAG, window);
+		//printf("\n%s,  window1 id=%d", TAG, window);
 		if (window != NULL)
 		{
 			int index = webview_Index += 1;
 
 			//WKE_WINDOW_TYPE_CONTROL
 			wkeWebView webview = wkeCreateWebWindow(WKE_WINDOW_TYPE_CONTROL, window, x, y, width, height);
-			
-
+		
 			VectorWkeWebView[webview_Index] = webview;
 			VectorWkeWebViewIndex[webview_Index] = index;
 			
@@ -158,9 +176,13 @@ extern "C" {
 			//´«µÝÒýÓÃ
 			//wkeOnDocumentReady(webview, handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
 
+			wkeOnConsole(webview, onConsoleMessage, &VectorWkeWebViewIndex[webview_Index]);
 			wkeOnDocumentReady2(webview,handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
 			wkeOnTitleChanged(webview, handleTitleChanged, &VectorWkeWebViewIndex[webview_Index]);
 			return ANEutils.getFREObject(webview_Index);
+		}
+		else {
+			printf("\n%s, not window", TAG);
 		}
 
 		return ANEutils.getFREObject(0);
@@ -525,7 +547,7 @@ extern "C" {
 				}
 			}
 		}
-		printf("\n%s,%s   = toAir=%s      argCount=%d", TAG, "jsBindCallParam", toAir, argCount);
+		//printf("\n%s,%s   = toAir=%s      argCount=%d", TAG, "jsBindCallParam", toAir, argCount);
 		if (valueCount == argCount)
 		{
 			ANEutils.dispatchEvent("jscallback",toAir);

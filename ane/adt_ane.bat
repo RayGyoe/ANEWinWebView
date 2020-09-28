@@ -10,5 +10,6 @@ call copydll.bat
 
 copy /y library.swf default
 copy /y library.swf Windows-x86
+copy /y library.swf Windows-x86-64
 
-adt -package -tsa none -storetype pkcs12 -keystore cert.p12 -storepass fd -target ane ANEWinWebView.ane extension.xml -swc ANEWinWebView.swc -platform Windows-x86 -C Windows-x86 . -platform default -C default .
+adt -package -tsa none -storetype pkcs12 -keystore cert.p12 -storepass fd -target ane ANEWinWebView.ane extension.xml -swc ANEWinWebView.swc -platform Windows-x86 -C Windows-x86 .  -platform Windows-x86-64 -C Windows-x86-64 . -platform default -C default .

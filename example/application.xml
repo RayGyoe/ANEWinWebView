@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/26.0">
+<application xmlns="http://ns.adobe.com/air/application/32.0">
   <id>cn.edoctor.example</id>
   <versionNumber>1.0</versionNumber>
   <!--<supportedProfiles>tv extendedTV desktop mobileDevice extendedDesktop</supportedProfiles>-->
   <supportedProfiles>extendedDesktop</supportedProfiles>
+  <architecture>64</architecture>
   <programMenuFolder>eDoctor</programMenuFolder>
   <filename>example</filename>
   <name>
@@ -356,6 +357,7 @@
     <autoOrients>true</autoOrients>
 	  <requestedDisplayResolution>high</requestedDisplayResolution>
   </initialWindow>
+  <gpuPreference>discrete</gpuPreference>
   <icon>
 		<!--android icon-->
 		<!--<image36x36>icons/36.png</image36x36>

@@ -4,7 +4,7 @@ package
 	import com.vsdevelop.air.extension.webview.ANEWebView;
 	import com.vsdevelop.air.extension.webview.ANEWebViewEvent;
 	import com.vsdevelop.air.extension.webview.ANEWinWebView;
-	import com.vsdevelop.controls.Fps;
+	//import com.vsdevelop.controls.Fps;
 	import flash.desktop.NativeApplication;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -21,7 +21,7 @@ package
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
 	import flash.utils.setTimeout;
-	
+	import flash.system.Capabilities;
 	/**
 	 * ...
 	 * @author Ray.eDoctor
@@ -42,19 +42,20 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			
 			
-			if (ANEWinWebView.getInstance().isSupported)
-			{
-				ANEWinWebView.getInstance().wkeInitialize();
-				ANEWinWebView.getInstance().wkeEnableHighDPISupport(stage);
-			}
-			
 			//NativeApplication.nativeApplication
 			
 			//addChild(new Fps());
 			
 			skinView = new skin();
 			addChild(skinView);
+			skinView._platform.text = Capabilities.cpuAddressSize.toString();
 			
+			
+			if (ANEWinWebView.getInstance().isSupported)
+			{
+				ANEWinWebView.getInstance().wkeInitialize();
+				ANEWinWebView.getInstance().wkeEnableHighDPISupport(stage);
+			}
 			
 			skinView.go.addEventListener(MouseEvent.CLICK, goPath);
 			skinView.cache.addEventListener(MouseEvent.CLICK, openCachePath);
