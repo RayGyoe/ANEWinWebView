@@ -149,12 +149,19 @@ extern "C" {
 
 		std::string windowTitle = ANEutils.getString(argv[0]);
 
-		std::wstring title = ANEutils.s2ws(windowTitle);
-
-		printf("\n%s,title=%s", TAG, windowTitle.c_str());
-
 		HWND window = FindWindow(NULL, ANEutils.stringToLPCWSTR(windowTitle));
 
+		if (window == NULL) {
+			printf("\n%s,%s", TAG, "find 2");
+			std::wstring str = ANEutils.UTF82Wide(windowTitle);
+			LPCWSTR result = str.c_str();
+			window = ::FindWindow(NULL, result);
+		}
+		if (window == NULL) {
+			printf("\n%s,%s", TAG, "find 3");
+			HWND hd = GetDesktopWindow();        //得到桌面窗口
+			window = GetWindow(hd, GW_CHILD);        //得到屏幕上第一个子窗口
+		}
 
 		int x = ANEutils.getInt32(argv[1]);
 		int y = ANEutils.getInt32(argv[2]);

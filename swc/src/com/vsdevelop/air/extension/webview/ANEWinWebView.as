@@ -44,6 +44,11 @@ package com.vsdevelop.air.extension.webview
 			}
 		}
 
+		public function set scale(value:Number):void
+		{
+			_scale = value;
+		}
+
 		public function get scale():Number
 		{
 			return _scale;
@@ -160,14 +165,11 @@ package com.vsdevelop.air.extension.webview
 				var _y:int = y * _scale;
 				var _width:int = width * _scale;
 				var _height:int = height * _scale;
-				
 				var webviewId:int = _extCtx.call("wkeCreateWebWindow",stage.nativeWindow.title,_x,_y,_width,_height) as int;
 				if(webviewId){
 					var webview:ANEWebView = new ANEWebView(webviewId,_extCtx);
-					webview.wkeMoveWindow(_x,_y,_width,_height);
-					
+					webview.wkeMoveWindow(x,y,width,height);
 					webViewObject[webviewId] = webview;
-					
 					return webview;
 				}
 			}else{
