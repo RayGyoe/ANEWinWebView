@@ -65,7 +65,7 @@ extern "C" {
 
 	void onConsoleMessage(wkeWebView webView, void* param, wkeConsoleLevel level, const wkeString message, const wkeString sourceName, unsigned sourceLine, const wkeString stackTrace)
 	{
-		const utf8* msg = wkeToString(message);
+		//const utf8* msg = wkeToString(message);
 	}
 	//events
 
@@ -169,28 +169,37 @@ extern "C" {
 		int height = ANEutils.getInt32(argv[4]);
 
 		//printf("\n%s,  window1 id=%d", TAG, window);
-		if (window != NULL)
-		{
-			int index = webview_Index += 1;
 
-			//WKE_WINDOW_TYPE_CONTROL
-			wkeWebView webview = wkeCreateWebWindow(WKE_WINDOW_TYPE_CONTROL, window, x, y, width, height);
+		try {
+			if (window != NULL)
+			{
+				int index = webview_Index += 1;
+
+				//WKE_WINDOW_TYPE_CONTROL
+				wkeWebView webview = wkeCreateWebWindow(WKE_WINDOW_TYPE_CONTROL, window, x, y, width, height);
+				
+				wkeSetNpapiPluginsEnabled(webview, false);//是否开启npapi插件，如flash等，默认开。
+
+				VectorWkeWebView[webview_Index] = webview;
+				VectorWkeWebViewIndex[webview_Index] = index;
+
+
+				//传递引用
+				//wkeOnDocumentReady(webview, handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
+
+				wkeOnConsole(webview, onConsoleMessage, &VectorWkeWebViewIndex[webview_Index]);
+				wkeOnDocumentReady2(webview, handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
+				wkeOnTitleChanged(webview, handleTitleChanged, &VectorWkeWebViewIndex[webview_Index]);
+				return ANEutils.getFREObject(webview_Index);
+			}
+			else {
+				printf("\n%s, not window", TAG);
+			}
+		}
+		catch (exception e) {
+			printf("\n%s, create webview window error \n", TAG);
+		}
 		
-			VectorWkeWebView[webview_Index] = webview;
-			VectorWkeWebViewIndex[webview_Index] = index;
-			
-
-			//传递引用
-			//wkeOnDocumentReady(webview, handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
-
-			wkeOnConsole(webview, onConsoleMessage, &VectorWkeWebViewIndex[webview_Index]);
-			wkeOnDocumentReady2(webview,handleDocumentReady, &VectorWkeWebViewIndex[webview_Index]);
-			wkeOnTitleChanged(webview, handleTitleChanged, &VectorWkeWebViewIndex[webview_Index]);
-			return ANEutils.getFREObject(webview_Index);
-		}
-		else {
-			printf("\n%s, not window", TAG);
-		}
 
 		return ANEutils.getFREObject(0);
 	}

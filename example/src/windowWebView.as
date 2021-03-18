@@ -11,6 +11,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.filesystem.File;
 	import flash.geom.Rectangle;
+	import flash.utils.setTimeout;
 	
 	/**
 	 * ...
@@ -42,25 +43,32 @@ package
 			skinView.debug.addEventListener(MouseEvent.CLICK, devTools);
 			skinView.localfile.addEventListener(MouseEvent.CLICK, localHtml);
 			
-			
-			
-			webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage,0,60,bounds.width,bounds.height);
-			webviewMain.wkeLoadURL('https://www.talkmed.com');
-			
-			webviewMain.addCallBack("asfunction2", function(arg1:String,arg2:String,arg3:String):void{
-				trace(arguments);
-				
-			});
-			
-			webviewMain.wkeShowWindow();
-			
+			setTimeout(init, 500);
 			
 			addEventListener(Event.CLOSE, removeWebView);
 		}
 		
+		private function init():void 
+		{
+			
+			webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage,0,60,bounds.width,bounds.height);
+			
+			//webviewMain.addCallBack("asfunction2", function(arg1:String,arg2:String,arg3:String):void{
+				//trace(arguments);
+				//
+			//});
+			
+			webviewMain.wkeShowWindow();
+			
+			
+			//webviewMain.wkeLoadURL('https://www.edoctor.cn');
+			
+			
+		}
+		
 		private function removeWebView(e:Event):void 
 		{
-			webviewMain.wkeDestroyWebWindow();
+			if(webviewMain)webviewMain.wkeDestroyWebWindow();
 		}
 		
 		private function localHtml(e:MouseEvent):void 
