@@ -8,14 +8,14 @@
           <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
         </Transforms>
         <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-        <DigestValue>rdEwKxDBQPaTn6ALpLh5tJTdotARzfjlZyJPCEqxhwc=</DigestValue>
+        <DigestValue>rLBbw6/cNVAIIxuXPXrNbeQhx6dhcoO1gNiIuGuzSXk=</DigestValue>
       </Reference>
     </SignedInfo>
-    <SignatureValue Id="PackageSignatureValue">OuIistjOw4zg9rPqrDZthYenszrSvf6G6fdR4vMG62wKE4fhxszSymhxEwIsSD+k1pqzy4SyjyJs
-PSJTkIOY5mGpI5H9DxVAVsR0sIBOrCvkmRJRmh3kTbL1mhucXE6LJePGd96FB2HXRfis64TAqS21
-T3Orcu6aJ+gDrJQFp8E1kCrmVZ5ONDbnzJBvugVa+O6f76B3LwIa4lo82T3+BN1m3K0hpwjYiYeU
-W9f4eavRACFE4fCfpkjq5Mgr30CygTvw9oRG/icDMXCR3FOqsXdUuHZSuyyAMXz2r2fFbKj8xpoi
-kAaLmYnHdfNAEibMsTeGcFJ1e3aRWjYy98+unQ==</SignatureValue>
+    <SignatureValue Id="PackageSignatureValue">F0uWq74IRmaAcnyijklZ1/bZ2EzmjccnHmq0uZaNR/uVHqOm+gEdp/PsX6iJsTE1OS1Nw85Mg2NA
+0+WKozOqgaTiBa4i64dP1y+0SsGQPQ2Md5QMrQU8YwmhQHx9QGVPI3chpYDcFoEdimwUzB3MuRnW
+cgK8Qku6bW4iuhALPmJqTtdPZKAz7X/HvgJXvGuHmszsBb6M3ZtGaaqinqWTFOYGuMjbPHpWUc1P
+S1YPF8ZMGmNbEg8u0qAzrfci6z/fuiq0bqZjJUTPeFUafldSzB/5FvGoAc6Te8zjC0f5+PZOkexK
+p/HYjqYEmuDciC4IQx6Mj2yd7H0SQClSAtAPPQ==</SignatureValue>
     <KeyInfo>
       <X509Data>
         <X509Certificate>MIIC4DCCAcigAwIBAgIbLTNjY2ZhYWU4OjE1NGE2NzBmZWUzOi04MDAwMA0GCSqGSIb3DQEBBQUA
@@ -35,7 +35,7 @@ Q+UzSYBL8VC5UE0Q6hOg1oVNE/agYX4KCN+hTMsKnpBDcA9BKRWbn7PwSA8BSYtBfswpikaR1z3v
     </KeyInfo>
     <Object>
       <Manifest Id="PackageContents">
-        <Reference URI="mimetype"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>QfjPqwYNSozTaKi3Ar1Veog4uaFk5DPieQA0v9uRJdY=</DigestValue></Reference><Reference URI="META-INF/ANE/extension.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>M7tQuS5qcCD8P0mFTiR0ukRk4LiPkc9Im1vk5TcJyCY=</DigestValue></Reference><Reference URI="catalog.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>hgJrj6rxX7ythGzP4MpuUG2kC0HVFKk3uWosMUkT+A4=</DigestValue></Reference><Reference URI="library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>uMI6JWlsKhIgf+V5yvm1ZyCF23Xf+sWhO/GmzXbsPZg=</DigestValue></Reference><Reference URI="META-INF/ANE/default/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>uMI6JWlsKhIgf+V5yvm1ZyCF23Xf+sWhO/GmzXbsPZg=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86-64/ANEWinWebView.dll"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>zUvYvF3yslGqdpdGjhnY1MM5lZh0cmK9v78+53KYdg8=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86-64/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>uMI6JWlsKhIgf+V5yvm1ZyCF23Xf+sWhO/GmzXbsPZg=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86/ANEWinWebView.dll"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>uQmrzO8LuLT7lVu0wvDtwgvadjVddMnxODn+W3Ntg3Q=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>uMI6JWlsKhIgf+V5yvm1ZyCF23Xf+sWhO/GmzXbsPZg=</DigestValue></Reference>
+        <Reference URI="mimetype"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>QfjPqwYNSozTaKi3Ar1Veog4uaFk5DPieQA0v9uRJdY=</DigestValue></Reference><Reference URI="META-INF/ANE/extension.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>M7tQuS5qcCD8P0mFTiR0ukRk4LiPkc9Im1vk5TcJyCY=</DigestValue></Reference><Reference URI="catalog.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>wK9rHDz+ItKJW5/7wKHggsrHwEjVuMeRHtiXtMmYEY0=</DigestValue></Reference><Reference URI="library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>auP9u9qQXTh+DhmdFpMDgmatD8t8xGRTFwNzkJjhXDQ=</DigestValue></Reference><Reference URI="META-INF/ANE/default/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>auP9u9qQXTh+DhmdFpMDgmatD8t8xGRTFwNzkJjhXDQ=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86-64/ANEWinWebView.dll"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>RFMHIDGWvslefrQte2h0+cI8cZVt+PFEoEVdfkx30g4=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86-64/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>auP9u9qQXTh+DhmdFpMDgmatD8t8xGRTFwNzkJjhXDQ=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86/ANEWinWebView.dll"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>wpSjjEKLWhRVRByoNv+Knouwrk7u1S19KIHgUl31Wsk=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>auP9u9qQXTh+DhmdFpMDgmatD8t8xGRTFwNzkJjhXDQ=</DigestValue></Reference>
       </Manifest>
     </Object>
     

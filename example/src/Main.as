@@ -21,7 +21,6 @@ package
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
 	import flash.utils.setTimeout;
-	import flash.system.Capabilities;
 	/**
 	 * ...
 	 * @author Ray.eDoctor
@@ -48,7 +47,8 @@ package
 			
 			skinView = new skin();
 			addChild(skinView);
-			skinView._platform.text = Capabilities.cpuAddressSize.toString();
+			//trace(Capabilities.cpuArchitecture.toString());
+			//skinView._platform.text = Capabilities.cpuAddressSize.toString();
 			
 			
 			if (ANEWinWebView.getInstance().isSupported)
@@ -76,7 +76,7 @@ package
 			skinView.setjs.addEventListener(MouseEvent.CLICK, astojs);
 			skinView.getjs.addEventListener(MouseEvent.CLICK, astojs);
 			
-			skinView.path.text = 'https://www.talkmed.com';
+			skinView.path.text = 'https://meeting.talkmed.com';
 			
 			
 			webviewMain = ANEWinWebView.getInstance().wkeCreateWebWindow(stage, 0, 60, stage.stageWidth, stage.stageHeight - 60);
@@ -84,19 +84,16 @@ package
 			webviewMain.addEventListener(ANEWebViewEvent.TITLE, webViewEvents);
 			webviewMain.addEventListener(ANEWebViewEvent.FRAME_COMPLETE, webViewEvents);
 			webviewMain.addEventListener(ANEWebViewEvent.JSCALLBACK, webViewEvents);
-			webviewMain.addCallBack("asfunction", function(arg1:int,arg2:String):void{
-				
-				trace(arguments);
-			});
+			//webviewMain.addCallBack("asfunction", function(arg1:int,arg2:String):void{
+				//
+				//trace(arguments);
+			//});
 			webviewMain.wkeShowWindow();
-			
+			//
 			
 			goPath();
 			
 			stage.addEventListener(Event.RESIZE, resizeView);
-			
-			var a:int = 1;
-			trace(typeof true)
 		}
 		
 		private function drawToBitmapData(e:MouseEvent):void 
@@ -202,6 +199,7 @@ package
 		
 		private function goPath(e:MouseEvent = null):void 
 		{
+			if (!webviewMain) return;
 			webviewMain.wkeLoadURL(skinView.path.text);
 			if (!webviewMain.visible)
 			{

@@ -10,12 +10,18 @@
   </features>
   <libraries>
     <library path="library.swf">
-      <script name="com/vsdevelop/air/extension/webview/ANEWebViewEvent" mod="1591583796803" signatureChecksum="2093838582" >
+      <script name="com/vsdevelop/air/extension/webview/ANEWebViewEvent" mod="1601309860293" signatureChecksum="2093838582" >
         <def id="com.vsdevelop.air.extension.webview:ANEWebViewEvent" /> 
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:Event" type="i" /> 
       </script>
-      <script name="com/vsdevelop/air/extension/webview/ANEWebView" mod="1591592256505" signatureChecksum="104350459" >
+      <script name="_ce047be3ee050957e47651773a6be9e33b8f2e93a5c6739403773aaffa3847a6_flash_display_Sprite" mod="1601312654162" signatureChecksum="723024381" >
+        <def id="_ce047be3ee050957e47651773a6be9e33b8f2e93a5c6739403773aaffa3847a6_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/vsdevelop/air/extension/webview/ANEWebView" mod="1601309860293" signatureChecksum="104350459" >
         <def id="com.vsdevelop.air.extension.webview:ANEWebView" /> 
         <dep id="flash.utils:ByteArray" type="e" /> 
         <dep id="flash.display:BitmapData" type="e" /> 
@@ -31,13 +37,7 @@
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:EventDispatcher" type="i" /> 
       </script>
-      <script name="_fc86835b8a82bf1761970ff1268fb457d984c8ee43ff91568599c78cfb3ed614_flash_display_Sprite" mod="1591592260643" signatureChecksum="1476295245" >
-        <def id="_fc86835b8a82bf1761970ff1268fb457d984c8ee43ff91568599c78cfb3ed614_flash_display_Sprite" /> 
-        <dep id="flash.system:Security" type="e" /> 
-        <dep id="AS3" type="n" /> 
-        <dep id="flash.display:Sprite" type="i" /> 
-      </script>
-      <script name="com/vsdevelop/air/extension/webview/ANEWinWebView" mod="1591583796804" signatureChecksum="1925245161" >
+      <script name="com/vsdevelop/air/extension/webview/ANEWinWebView" mod="1601312651023" signatureChecksum="121827908" >
         <def id="com.vsdevelop.air.extension.webview:ANEWinWebView" /> 
         <dep id="com.vsdevelop.air.extension.webview:ANEWebView" type="e" /> 
         <dep id="trace" type="e" /> 
@@ -53,7 +53,7 @@
         <dep id="flash.events:EventDispatcher" type="i" /> 
       </script>
       <digests>
-        <digest type="SHA-256" signed="false" value="b8c23a25696c2a12207fe579caf9b5672085db75dffac5a13bf1a6cd76ec3d98"   />
+        <digest type="SHA-256" signed="false" value="6ae3fdbbda905d387e0e199d1693038266ad0fcb7cc464531703739098e15c34"   />
       </digests>
     </library>
   </libraries>
