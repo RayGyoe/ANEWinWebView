@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.6.0" build="23201" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="com/vsdevelop/air/extension/webview/ANEWebViewEvent" mod="1601309860293" signatureChecksum="2093838582" >
+        <def id="com.vsdevelop.air.extension.webview:ANEWebViewEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/vsdevelop/air/extension/webview/ANECefWebView" mod="1616189763701" signatureChecksum="1209189739" >
+        <def id="com.vsdevelop.air.extension.webview:ANECefWebView" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWebView" type="s" /> 
+        <dep id="flash.events:StatusEvent" type="s" /> 
+        <dep id="flash.display:Stage" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <script name="_6bd946094ce1f98199594d86b808caaff2ecd692a6472712cf223db7e500f93d_flash_display_Sprite" mod="1616189936862" signatureChecksum="1818786411" >
+        <def id="_6bd946094ce1f98199594d86b808caaff2ecd692a6472712cf223db7e500f93d_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/vsdevelop/air/extension/webview/ANEWebView" mod="1601309860293" signatureChecksum="104350459" >
+        <def id="com.vsdevelop.air.extension.webview:ANEWebView" /> 
+        <dep id="flash.utils:ByteArray" type="e" /> 
+        <dep id="flash.display:BitmapData" type="e" /> 
+        <dep id="flash.utils:Endian" type="e" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.filesystem:File" type="e" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWinWebView" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.utils:ByteArray" type="s" /> 
+        <dep id="flash.display:BitmapData" type="s" /> 
+        <dep id="flash.filesystem:File" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <script name="com/vsdevelop/air/extension/webview/ANEWinWebView" mod="1601312651023" signatureChecksum="121827908" >
+        <def id="com.vsdevelop.air.extension.webview:ANEWinWebView" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWebView" type="e" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWebViewEvent" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANEWebView" type="s" /> 
+        <dep id="flash.events:StatusEvent" type="s" /> 
+        <dep id="flash.display:Stage" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <digests>
+        <digest type="SHA-256" signed="false" value="0bccef9c4eb4ca534da29b89b1fde6220898a8289da3bd5100e4b8085fd732ee"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

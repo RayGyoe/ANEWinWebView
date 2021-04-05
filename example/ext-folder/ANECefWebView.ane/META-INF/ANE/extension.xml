@@ -1,0 +1,16 @@
+<extension xmlns="http://ns.adobe.com/air/extension/29.0">
+  <id>com.vsdevelop.air.extension.cefwebview</id>
+  <versionNumber>1.0</versionNumber>
+  <platforms>
+    <platform name="Windows-x86">
+        <applicationDeployment>
+            <nativeLibrary>ANECefWebView.dll</nativeLibrary> 
+            <initializer>ANECefWebViewExtInitializer</initializer> 
+            <finalizer>ANECefWebViewExtFinalizer</finalizer> 
+        </applicationDeployment>
+    </platform>
+    <platform name="default">
+        <applicationDeployment />
+    </platform>
+  </platforms>
+</extension>

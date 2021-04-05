@@ -14,7 +14,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'3/19/2021'</value>
+      <value>'4/6/2021'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -37,10 +37,11 @@
     <library-path append="true">
       <path-element>F:\Works\eDoctor\ANEWinWebView\example\lib\ANEWinWebView.ane</path-element>
       <path-element>F:\Works\eDoctor\ANEWinWebView\example\lib\skin.swc</path-element>
+      <path-element>F:\Works\eDoctor\ANEWinWebView\example\lib\ANECefWebView.ane</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>F:\Works\eDoctor\ANEWinWebView\example\src\Main.as</path-element>
+    <path-element>F:\Works\eDoctor\ANEWinWebView\example\src\MainCefWebView.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>60</default-frame-rate>
