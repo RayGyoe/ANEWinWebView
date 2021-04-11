@@ -25,3 +25,9 @@ asdocs:https://raygyoe.github.io/ANEWinWebView/docs/asdocs/
 适配系统：win xp,win 7,win 8,win10
 
 ![1](/docs/1.png)![2](/docs/2.png)
+
+
+
+
+
+win7可能缺少Visual C++需要安装VC_redist.x86.exe：https://aka.ms/vs/16/release/vc_redist.x86.exe
