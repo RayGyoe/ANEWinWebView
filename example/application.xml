@@ -36,7 +36,7 @@
   <extensions>
 		<!--<extensionID></extensionID>-->
 		<extensionID>com.vsdevelop.air.extension.cefwebview</extensionID>
-		<!--<extensionID>com.vsdevelop.air.extension.winwebview</extensionID>-->
+		<extensionID>com.vsdevelop.air.extension.winwebview</extensionID>
   </extensions>
   <!-- 
 	AIR options:
