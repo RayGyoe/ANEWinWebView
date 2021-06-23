@@ -75,7 +75,7 @@ goto end
 
 :desktop-app
 if "%PLATFORM%"=="desktop" (
-echo call adt -package %OPTIONS%  %SIGNING_OPTIONS% -target %TARGET%  "%OUTPUT%" "%APP_XML%" %FILE_OR_DIR% -extdir "%EXT_DIR%"
+echo call adt -package %OPTIONS%  %SIGNING_OPTIONS% -target %TARGET% "%OUTPUT%" "%APP_XML%" %FILE_OR_DIR% -extdir "%EXT_DIR%"
 if not "%DIST_EXT%"=="app" (call adt -package %OPTIONS% %SIGNING_OPTIONS%  -target %TARGET%  "%OUTPUT%" "%APP_XML%" %FILE_OR_DIR% -extdir "%EXT_DIR%"))
 
 if not "%PLATFORM%"=="desktop" (

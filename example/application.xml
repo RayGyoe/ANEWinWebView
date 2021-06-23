@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/29.0">
+<application xmlns="http://ns.adobe.com/air/application/33.1">
   <id>cn.edoctor.example</id>
   <versionNumber>1.0</versionNumber>
   <!--<supportedProfiles>tv extendedTV desktop mobileDevice extendedDesktop</supportedProfiles>-->
@@ -7,11 +7,10 @@
   <architecture>32</architecture>
   <programMenuFolder>eDoctor</programMenuFolder>
   <filename>example</filename>
-  <name>
-		<text xml:lang="en">example</text>
-		<text xml:lang="zh_Hans">example</text>
-		<text xml:lang="zh_Hant">example</text>
-  </name>
+  <supportedLanguages>en zh</supportedLanguages>
+
+	
+	
   <copyright>Copyright (C) 2016 By eDoctor Healthcare Communications. All Rights Reserved.‎</copyright>
   <initialWindow>
     <title>example</title>
@@ -31,7 +30,14 @@
   </initialWindow>
   <!--<gpuPreference>discrete</gpuPreference>-->
   <icon>
-		<!--android icon-->
+		
+		<image16x16>icons/16.png</image16x16>
+		<image32x32>icons/32.png</image32x32>
+		<image48x48>icons/48.png</image48x48>
+		<image128x128>icons/128.png</image128x128>
+		<image144x144>icons/144.png</image144x144>
+		<image256x256>icons/256.png</image256x256>
+		<image512x512>icons/512.png</image512x512>
   </icon>
   <extensions>
 		<!--<extensionID></extensionID>-->
