@@ -22,6 +22,7 @@ package
 	{
 		private var skinView:skin;
 		private var webviewMain:ANEWebView;
+		private var webiew:ANEWebView;
 		
 		public function WebView(windowTitle:String) 
 		{
@@ -42,7 +43,7 @@ package
 			stage.addChild(skinView);
 			
 			
-			setTimeout(init, 200);
+			setTimeout(init, 100);
 			
 			addEventListener(Event.CLOSE, removeWebView);
 		}
@@ -50,7 +51,7 @@ package
 		private function init():void 
 		{
 			
-			ANECefWebView.getInstance().CreateWebWindow(stage, 'https://meeting.talkmed.com', 0, 0, stage.stageWidth, stage.stageHeight);
+			webiew = ANECefWebView.getInstance().CreateWebWindow(stage, 'https://meeting.talkmed.com', 0, 0, stage.stageWidth, stage.stageHeight);
 			
 			
 			//webviewMain.wkeLoadURL('https://www.edoctor.cn');
@@ -60,7 +61,7 @@ package
 		
 		private function removeWebView(e:Event):void 
 		{
-		
+			//ANECefWebView.getInstance().
 		}
 		
 	}

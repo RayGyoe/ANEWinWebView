@@ -73,8 +73,8 @@ package
 		
 		private function goPath(e:MouseEvent):void 
 		{	
-			
-			ANECefWebView.getInstance().CreateWebWindow(stage, skinView.path.text, 0, i*200+100, stage.stageWidth, 200);
+			var cefheight:int = 400;
+			ANECefWebView.getInstance().CreateWebWindow(stage, skinView.path.text, 0, i*cefheight+100, stage.stageWidth, cefheight);
 			
 			i++;
 		}
