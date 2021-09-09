@@ -43,7 +43,7 @@ package
 			stage.addChild(skinView);
 			
 			
-			setTimeout(init, 100);
+			setTimeout(init, 500);
 			
 			addEventListener(Event.CLOSE, removeWebView);
 		}
