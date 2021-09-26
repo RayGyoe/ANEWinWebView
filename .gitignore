@@ -4,3 +4,5 @@ example/bin
 example/bin-release
 _config.yml
 *.db
+native-cef
+ane-cef

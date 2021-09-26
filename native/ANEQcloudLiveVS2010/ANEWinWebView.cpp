@@ -149,13 +149,14 @@ extern "C" {
 
 		std::string windowTitle = ANEutils.getString(argv[0]);
 
-		HWND window = FindWindow(NULL, ANEutils.stringToLPCWSTR(windowTitle));
+		//HWND window = FindWindow(NULL, ANEutils.stringToLPCWSTR(windowTitle));
+		HWND window = FindWindow(NULL, (LPCWSTR)windowTitle.c_str());
 
 		if (window == NULL) {
 			printf("\n%s,%s", TAG, "find 2");
 			std::wstring str = ANEutils.UTF82Wide(windowTitle);
 			LPCWSTR result = str.c_str();
-			window = ::FindWindow(NULL, result);
+			window = FindWindow(NULL, result);
 		}
 		if (window == NULL) {
 			printf("\n%s,%s", TAG, "find 3");
