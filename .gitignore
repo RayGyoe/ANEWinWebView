@@ -4,5 +4,6 @@ example/bin
 example/bin-release
 _config.yml
 *.db
+native/ANEWinWebView.VC.db
 native-cef
 ane-cef
