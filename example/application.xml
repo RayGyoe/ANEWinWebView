@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/29.0">
+<application xmlns="http://ns.adobe.com/air/application/33.1">
   <id>cn.edoctor.example</id>
   <versionNumber>1.0</versionNumber>
   <!--<supportedProfiles>tv extendedTV desktop mobileDevice extendedDesktop</supportedProfiles>-->
@@ -26,7 +26,7 @@
     <!-- landscape,portrait -->
     <aspectRatio>landscape</aspectRatio>
     <autoOrients>true</autoOrients>
-	  <requestedDisplayResolution>high</requestedDisplayResolution>
+	<requestedDisplayResolution>high</requestedDisplayResolution>
   </initialWindow>
   <!--<gpuPreference>discrete</gpuPreference>-->
   <icon>

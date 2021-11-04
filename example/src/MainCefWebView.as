@@ -74,9 +74,12 @@ package
 		private function goPath(e:MouseEvent):void 
 		{	
 			var cefheight:int = 400;
-			ANECefWebView.getInstance().CreateWebWindow(stage, skinView.path.text, 0, i*cefheight+100, stage.stageWidth, cefheight);
-			
-			i++;
+			if (ANECefWebView.getInstance().isSupported)
+			{
+				ANECefWebView.getInstance().CreateWebWindow(stage, skinView.path.text, 0, i*cefheight+100, stage.stageWidth, cefheight);
+				i++;			
+			}
+
 		}
 		
 		private function drawToBitmapData(e:MouseEvent):void 

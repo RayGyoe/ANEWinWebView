@@ -50,10 +50,10 @@ package
 		
 		private function init():void 
 		{
-			
-			webiew = ANECefWebView.getInstance().CreateWebWindow(stage, 'https://meeting.talkmed.com', 0, 0, stage.stageWidth, stage.stageHeight);
-			
-			
+			if (ANECefWebView.getInstance().isSupported)
+			{
+				webiew = ANECefWebView.getInstance().CreateWebWindow(stage, 'https://meeting.talkmed.com', 0, 0, stage.stageWidth, stage.stageHeight);
+			}
 			//webviewMain.wkeLoadURL('https://www.edoctor.cn');
 			
 			
