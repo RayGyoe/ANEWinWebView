@@ -15,24 +15,27 @@
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:Event" type="i" /> 
       </script>
-      <script name="com/vsdevelop/air/extension/webview/ANECefWebView" mod="1616189763701" signatureChecksum="1209189739" >
+      <script name="com/vsdevelop/air/extension/webview/ANECefWebView" mod="1637602448928" signatureChecksum="2401684774" >
         <def id="com.vsdevelop.air.extension.webview:ANECefWebView" /> 
+        <dep id="com.vsdevelop.air.extension.webview:CefWebView" type="e" /> 
         <dep id="trace" type="e" /> 
         <dep id="flash.events:StatusEvent" type="e" /> 
         <dep id="flash.external:ExtensionContext" type="e" /> 
         <dep id="Error" type="e" /> 
-        <dep id="com.vsdevelop.air.extension.webview:ANEWebView" type="s" /> 
+        <dep id="com.vsdevelop.air.extension.webview:CefWebView" type="s" /> 
         <dep id="flash.events:StatusEvent" type="s" /> 
         <dep id="flash.display:Stage" type="s" /> 
         <dep id="flash.external:ExtensionContext" type="s" /> 
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:EventDispatcher" type="i" /> 
       </script>
-      <script name="_6bd946094ce1f98199594d86b808caaff2ecd692a6472712cf223db7e500f93d_flash_display_Sprite" mod="1616189936862" signatureChecksum="1818786411" >
-        <def id="_6bd946094ce1f98199594d86b808caaff2ecd692a6472712cf223db7e500f93d_flash_display_Sprite" /> 
-        <dep id="flash.system:Security" type="e" /> 
+      <script name="com/vsdevelop/air/extension/webview/CefWebView" mod="1637603902696" signatureChecksum="1885876966" >
+        <def id="com.vsdevelop.air.extension.webview:CefWebView" /> 
+        <dep id="com.vsdevelop.air.extension.webview:ANECefWebView" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
         <dep id="AS3" type="n" /> 
-        <dep id="flash.display:Sprite" type="i" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
       </script>
       <script name="com/vsdevelop/air/extension/webview/ANEWebView" mod="1601309860293" signatureChecksum="104350459" >
         <def id="com.vsdevelop.air.extension.webview:ANEWebView" /> 
@@ -65,8 +68,14 @@
         <dep id="AS3" type="n" /> 
         <dep id="flash.events:EventDispatcher" type="i" /> 
       </script>
+      <script name="_4c01fbf2ca4e8622a361633e150851256a5e47e1241b38057cc3b7f55915f5ac_flash_display_Sprite" mod="1637604124910" signatureChecksum="1712552171" >
+        <def id="_4c01fbf2ca4e8622a361633e150851256a5e47e1241b38057cc3b7f55915f5ac_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
       <digests>
-        <digest type="SHA-256" signed="false" value="0bccef9c4eb4ca534da29b89b1fde6220898a8289da3bd5100e4b8085fd732ee"   />
+        <digest type="SHA-256" signed="false" value="e5eab6ab5f6c5c2232f95b9008fae461741905dfb982e8b9ef59bcc2187685a3"   />
       </digests>
     </library>
   </libraries>

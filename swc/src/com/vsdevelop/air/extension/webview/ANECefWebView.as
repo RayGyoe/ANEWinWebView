@@ -80,7 +80,7 @@ package com.vsdevelop.air.extension.webview
 		 * @return ANEWebView
 		 * 
 		 */		
-		public function CreateWebWindow(stage:Stage,url:String,x:int=0,y:int=0,width:int=200,height:int=200):ANEWebView
+		public function CreateWebWindow(stage:Stage,url:String,x:int=0,y:int=0,width:int=200,height:int=200):CefWebView
 		{
 			if(_isSupported){
 				
@@ -90,8 +90,7 @@ package com.vsdevelop.air.extension.webview
 				var _height:int = height * _scale;
 				var webviewId:int = _extCtx.call("CreateWebWindow",stage.nativeWindow.title,url,_x,_y,_width,_height) as int;
 				if(webviewId){
-					
-					trace(webviewId);
+					return new CefWebView(webviewId,_extCtx);
 				}
 			}else{
 				throw Error( 'Cef not isSupported');
@@ -108,6 +107,15 @@ package com.vsdevelop.air.extension.webview
 				
 				var screenWidth:int = _extCtx.call("EnableHighDPISupport") as int;
 				_scale = screenWidth/stage.fullScreenWidth;
+			}else{
+				throw Error( 'Cef is not isSupported');
+			}
+		}
+		
+		public function destroy():void{
+			if(_isSupported){
+				
+				_extCtx.call("destroy");
 			}else{
 				throw Error( 'Cef is not isSupported');
 			}

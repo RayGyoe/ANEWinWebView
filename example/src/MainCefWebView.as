@@ -31,6 +31,8 @@ package
 		
 		private var i:int;
 		
+		private var webViews:Array = [];
+		
 		public function MainCefWebView():void 
 		{
 			
@@ -69,6 +71,17 @@ package
 			if (ANECefWebView.getInstance().isSupported){
 				ANECefWebView.getInstance().EnableHighDPISupport(stage);
 			}
+			
+			stage.nativeWindow.addEventListener(Event.CLOSING, closeIng);
+		}
+		
+		private function closeIng(e:Event):void 
+		{
+			for (var k:String in webViews)
+			{
+				webViews[k]["destroy"]();
+			}
+			ANECefWebView.getInstance().destroy();
 		}
 		
 		private function goPath(e:MouseEvent):void 
@@ -76,7 +89,7 @@ package
 			var cefheight:int = 400;
 			if (ANECefWebView.getInstance().isSupported)
 			{
-				ANECefWebView.getInstance().CreateWebWindow(stage, skinView.path.text, 0, i*cefheight+100, stage.stageWidth, cefheight);
+				webViews.push(ANECefWebView.getInstance().CreateWebWindow(stage, skinView.path.text, 0, i*cefheight+100, stage.stageWidth, cefheight));
 				i++;			
 			}
 
